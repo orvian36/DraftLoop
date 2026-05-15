@@ -20,7 +20,7 @@ dev = [
 ]
 
 [tool.uv.workspace]
-members = ["packages/draftloop_core", "apps/api"]
+members = ["packages/draftloop_core", "packages/draftloop_ingest", "apps/api"]
 
 [tool.uv.sources]
 draftloop-core = { workspace = true }
