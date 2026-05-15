@@ -41,6 +41,6 @@ strict = true
 exclude = ["build/", "dist/", ".venv/"]
 
 [tool.pytest.ini_options]
-addopts = "-ra -q --strict-markers"
+addopts = "-ra -q --strict-markers --import-mode=importlib"
 asyncio_mode = "auto"
 testpaths = ["packages", "apps", "tests"]
