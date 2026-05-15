@@ -1,4 +1,9 @@
-"""Digital extractor backed by pymupdf4llm. Returns Markdown + per-line records."""
+"""Digital extractor backed by pymupdf4llm. Returns Markdown + per-line records.
+
+pymupdf4llm's per-chunk metadata may not carry a usable page number in all
+versions; we therefore use the position of each chunk in the returned list
+(aligned with the ``pages=`` argument we passed in) as the canonical page index.
+"""
 
 from __future__ import annotations
 
@@ -16,65 +21,57 @@ class Pdf4llmExtractor:
             str(path),
             page_chunks=True,
             pages=page_indices,
-            extract_words=True,
         )
         out: list[ExtractedPage] = []
-        for entry in chunks:
+        for pos, entry in enumerate(chunks):
             metadata = entry.get("metadata", {}) or {}
-            page_no = int(metadata.get("page", 0)) + 1
-            md = entry.get("text", "") or ""
-            words = entry.get("words", []) or []
-            lines = self._group_words(words, page_no)
+            # Prefer pymupdf4llm-supplied page index when present; otherwise fall back
+            # to the position-aligned page index from page_indices.
+            raw_page = metadata.get("page")
+            if isinstance(raw_page, int):
+                page_no = raw_page + 1
+            elif pos < len(page_indices):
+                page_no = page_indices[pos] + 1
+            else:
+                page_no = pos + 1
+
+            md_text = entry.get("text", "") or ""
+            lines = self._lines_from_markdown(md_text, page_no)
             out.append(
                 ExtractedPage(
                     page=page_no,
-                    width_px=int(metadata.get("page_width", 612)),
-                    height_px=int(metadata.get("page_height", 792)),
+                    width_px=int(metadata.get("page_width", 612) or 612),
+                    height_px=int(metadata.get("page_height", 792) or 792),
                     dpi=72,
                     class_="digital",
                     lines=lines,
-                    markdown=md,
+                    markdown=md_text,
                     engine="pymupdf4llm",
                 )
             )
         return out
 
     @staticmethod
-    def _group_words(words: list, page_no: int) -> list[Line]:
-        if not words:
-            return []
-        sorted_words = sorted(words, key=lambda w: (round(float(w[1]) / 3), float(w[0])))
-        grouped: list[list[tuple[float, float, float, float, str]]] = []
-        current: list[tuple[float, float, float, float, str]] = []
-        current_y: float | None = None
-        for w in sorted_words:
-            x0, y0, x1, y1, text = float(w[0]), float(w[1]), float(w[2]), float(w[3]), str(w[4])
-            if current_y is None or abs(y0 - current_y) <= 3:
-                current.append((x0, y0, x1, y1, text))
-                current_y = y0
-            else:
-                grouped.append(current)
-                current = [(x0, y0, x1, y1, text)]
-                current_y = y0
-        if current:
-            grouped.append(current)
+    def _lines_from_markdown(md_text: str, page_no: int) -> list[Line]:
+        """One Line per non-empty markdown line.
 
-        lines: list[Line] = []
-        for grp in grouped:
-            text = " ".join(p[4] for p in grp).strip()
+        Digital text is by definition high-confidence (1.0); bboxes are placeholder
+        because pymupdf4llm's per-line coordinates aren't reliably exposed across
+        versions. Downstream consumers that need real coordinates would use the
+        OCR engines.
+        """
+        out: list[Line] = []
+        for raw in md_text.splitlines():
+            text = raw.strip()
             if not text:
                 continue
-            xs = [int(p[0]) for p in grp]
-            ys = [int(p[1]) for p in grp]
-            xes = [int(p[2]) for p in grp]
-            yes = [int(p[3]) for p in grp]
-            lines.append(
+            out.append(
                 Line(
                     page=page_no,
                     text=text,
-                    bbox=(min(xs), min(ys), max(xes), max(yes)),
+                    bbox=(0, 0, 0, 0),
                     confidence=1.0,
                     engine="pymupdf4llm",
                 )
             )
-        return lines
+        return out

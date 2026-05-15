@@ -1,7 +1,26 @@
 """DraftLoop document ingestion + OCR.
 
-Submodules: ``types``, ``pipeline``, ``probe``, ``raster``, ``preprocess``,
-``markdown_assembler``, ``engines``. Each is imported lazily.
+Public API:
+    IngestPipeline, IngestRequest, IngestResult, Page, Line, NeedsReviewSpan, DocStatus
 """
 
+from draftloop_ingest.pipeline import IngestPipeline
+from draftloop_ingest.types import (
+    DocStatus,
+    IngestRequest,
+    IngestResult,
+    Line,
+    NeedsReviewSpan,
+    Page,
+)
+
+__all__ = [
+    "IngestPipeline",
+    "IngestRequest",
+    "IngestResult",
+    "Page",
+    "Line",
+    "NeedsReviewSpan",
+    "DocStatus",
+]
 __version__ = "0.1.0"
