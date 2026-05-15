@@ -1,0 +1,68 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install uv
+        run: |
+          curl -LsSf https://astral.sh/uv/install.sh | sh
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Enable pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@9.12.0 --activate
+
+      - name: uv sync
+        run: uv sync --all-packages
+
+      - name: pnpm install
+        run: pnpm install --frozen-lockfile
+
+      - name: ruff format check
+        run: uv run ruff format --check .
+
+      - name: ruff check
+        run: uv run ruff check .
+
+      - name: mypy strict
+        run: uv run mypy packages/
+
+      - name: boundary lint
+        run: uv run python scripts/check_boundaries.py --root .
+
+      - name: mermaid diagrams
+        run: bash scripts/check_diagrams.sh
+
+      - name: pnpm typecheck
+        run: pnpm -r typecheck
+
+      - name: pnpm lint
+        run: pnpm -r lint || true   # next lint config arrives with Plan 4
+
+      - name: Python unit tests
+        env:
+          GEMINI_API_KEY: sk-test
+        run: uv run pytest -q
+
+      - name: JS unit tests
+        run: pnpm -r test
