@@ -32,7 +32,7 @@ flowchart LR
 | 0 | `2026-05-15-00-foundation-plan.md`            | Monorepo, `draftloop_core`, `apps/api` skeleton, `apps/web` skeleton, `packages/ui` skeleton, scripts, CI, lint | — | **DONE** (merged to main 2026-05-15) |
 | 1 | `2026-05-15-01-ingestion-plan.md`             | `draftloop_ingest` core + digital PDF tier + scanned OCR tier + synthetic corpus (Phase 01 spec) | Plan 0 | **DONE** (merged 2026-05-16) |
 | 1b | `2026-05-15-01b-ingestion-hard-cases-plan.md` (future) | Handwritten (Gemini Vision + TrOCR), low-res super-res (Real-ESRGAN), photo perspective correction | Plan 1 | DEFERRED |
-| 2 | `2026-05-15-02-retrieval-plan.md`             | `draftloop_retrieval` (Phase 02 spec) | Plans 0, 1 | **WRITTEN** |
+| 2 | `2026-05-15-02-retrieval-plan.md`             | `draftloop_retrieval` (Phase 02 spec) | Plans 0, 1 | **DONE** (merged 2026-05-16) |
 | 3 | `2026-05-15-03-drafting-plan.md`              | `draftloop_drafting` + HHEM verifier + audit trail (Phase 03 spec) | Plans 0, 2 | **WRITTEN** |
 | 4 | `2026-05-15-04-operator-ui-plan.md`           | `apps/web` editor + `packages/ui` editor components (Phase 04 spec) | Plans 0, 3 | **WRITTEN** |
 | 5 | `2026-05-15-05-improvement-loop-plan.md`      | `draftloop_edits` — capture, classifier, memory bank, critic, replay (Phase 05 spec) | Plans 3, 4 | **WRITTEN** |
