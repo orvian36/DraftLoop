@@ -11,7 +11,7 @@ from pathlib import Path
 
 import pypdfium2 as pdfium
 
-TEXT_PRESENCE_MIN_CHARS = 30
+TEXT_PRESENCE_MIN_CHARS = 20
 
 
 @dataclass(frozen=True)
