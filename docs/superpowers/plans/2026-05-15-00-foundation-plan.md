@@ -302,9 +302,10 @@ DRAFTER_MODE=single_call
 EXTRACTION_MODEL=gemini-2.5-flash
 EMBED_MODEL=gemini-embedding-001
 EMBED_DIM=1536
+RERANKER=flash
 CRITIC_ENABLED=true
 CRITIC_AUTO_APPLY=false
-SEED_ON_BOOT=false
+SEED_ON_BOOT=true
 EVAL_COST_BUDGET_USD=2
 STORE=sqlite
 VECTOR_STORE=chroma
@@ -364,14 +365,18 @@ packages = ["src/draftloop_core"]
 ```python
 """DraftLoop core — shared types, errors, config, LLM shim, storage protocols.
 
-Public API:
-    types, errors, config, obs, llm, storage
+Submodules: ``types``, ``errors``, ``config``, ``obs``, ``llm``, ``storage``.
+Each is imported lazily via Python's normal submodule loading
+(``from draftloop_core.errors import IngestError`` etc.).
 """
-from draftloop_core import types, errors, config, obs, llm, storage
 
-__all__ = ["types", "errors", "config", "obs", "llm", "storage"]
 __version__ = "0.1.0"
 ```
+
+(Earlier plan revisions eager-imported every submodule from `__init__.py` —
+that produced an `ImportError` chain whenever any submodule was unimplemented,
+which broke TDD between Tasks 3 and 8. Submodules remain importable via their
+full path; explicit re-export in `__init__.py` was unnecessary.)
 
 - [ ] **Step 3: Create `packages/draftloop_core/tests/__init__.py`** (empty file)
 

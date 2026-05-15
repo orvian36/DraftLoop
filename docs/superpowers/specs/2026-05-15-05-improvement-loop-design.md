@@ -129,7 +129,7 @@ flowchart LR
   A --> C[Concat source_evidence chunks -> embed -> evidence_vec 1536d]
   B --> D[Chroma: edit_memory_rule]
   C --> E[Chroma: edit_memory_evidence]
-  D --> F[(metadata: edit_id, class[], operator_id, ts, trust_weight, slot)]
+  D --> F["metadata: edit_id, class_labels, operator_id, ts, trust_weight, slot"]
   E --> F
 ```
 
@@ -312,9 +312,9 @@ erDiagram
     string slot
     string sentence_id
     string op
-    json before
-    json after
-    json source_evidence_ids
+    varchar before
+    varchar after
+    varchar source_evidence_ids
     string word_diff
     int time_to_edit_ms
     string operator_id
@@ -323,16 +323,16 @@ erDiagram
     datetime timestamp
   }
   CLASSIFIED_EDIT {
-    string event_id PK_FK
-    json edit_class_labels
-    json classifier_confidences
+    string event_id PK
+    varchar edit_class_labels
+    varchar classifier_confidences
     string classifier_version
     datetime classified_at
   }
   INDUCED_RULE {
     string rule_id PK
     string event_id FK
-    string text
+    string rule_text
     string rule_vec_chroma_id
     string evidence_vec_chroma_id
     float trust_weight
@@ -341,8 +341,8 @@ erDiagram
   }
   PRINCIPLE {
     string principle_id PK
-    string text
-    json source_rule_ids
+    string principle_text
+    varchar source_rule_ids
     string status "active|proposed|retired"
     int coverage_count
     datetime approved_at
@@ -364,7 +364,7 @@ erDiagram
     float citation_retention_rate
     float fact_jaccard_p50
     float unsupported_rate
-    json per_matter
+    varchar per_matter
     datetime generated_at
   }
 ```

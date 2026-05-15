@@ -1,0 +1,22 @@
+[project]
+name = "draftloop-core"
+version = "0.1.0"
+description = "Shared types, errors, config, LLM shim, storage protocols"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "pydantic>=2.8.0",
+    "pydantic-settings>=2.5.0",
+    "structlog>=24.4.0",
+    "opentelemetry-sdk>=1.27.0",
+    "opentelemetry-exporter-otlp>=1.27.0",
+    "google-genai>=0.6.0",
+    "tenacity>=9.0.0",
+    "ulid-py>=1.1.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/draftloop_core"]
