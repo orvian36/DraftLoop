@@ -1,9 +1,8 @@
 """DraftLoop core — shared types, errors, config, LLM shim, storage protocols.
 
-Public API:
-    types, errors, config, obs, llm, storage
+Submodules: ``types``, ``errors``, ``config``, ``obs``, ``llm``, ``storage``.
+Each is imported lazily via Python's normal submodule loading
+(``from draftloop_core.errors import IngestError`` etc.).
 """
-from draftloop_core import types, errors, config, obs, llm, storage
 
-__all__ = ["types", "errors", "config", "obs", "llm", "storage"]
 __version__ = "0.1.0"
