@@ -52,4 +52,5 @@ def test_admin_endpoints_return_empty_lists(client):
 def test_upload_requires_filename(client):
     files = {"file": ("", b"data", "application/pdf")}
     r = client.post("/api/matters/M-1/docs", files=files)
-    assert r.status_code == 400
+    # FastAPI's multipart validator rejects empty filenames as 422 before our handler runs.
+    assert r.status_code in (400, 422)
