@@ -63,8 +63,10 @@ def test_verifier_falls_through_to_judge_when_hhem_unavailable():
     fake_judge.generate.return_value = judge_resp
     verifier = Verifier(hhem=_hhem(None), judge=fake_judge, judge_model="gemini-2.5-flash")
     fact = Fact(
-        sentence_id="s_1", text="Allegation",
-        citations=[Citation(chunk_id="c1", quote="alleg")], confidence="high",
+        sentence_id="s_1",
+        text="Allegation",
+        citations=[Citation(chunk_id="c1", quote="alleg")],
+        confidence="high",
     )
     fv = verifier.verify_fact(fact, {"c1": "alleg"})
     assert fv.final_verdict == "rewrite_to_unsupported"

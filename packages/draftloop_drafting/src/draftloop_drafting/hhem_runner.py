@@ -32,6 +32,7 @@ class HhemRunner:
                 return True
             try:
                 from transformers import AutoModelForSequenceClassification, AutoTokenizer
+
                 HhemRunner._tokenizer = AutoTokenizer.from_pretrained(
                     "vectara/hallucination_evaluation_model", trust_remote_code=True
                 )
@@ -50,6 +51,7 @@ class HhemRunner:
             return None
         try:
             import torch
+
             with torch.no_grad():
                 scores = HhemRunner._model.predict([(premise, hypothesis)])
             return float(scores[0])

@@ -45,6 +45,7 @@ async def test_retrieval_e2e(tmp_path):
     client = GeminiClient()
 
     import build_synthetic_corpus as gen
+
     pdfs = gen.build(force=False)
     complaint = next(p for p in pdfs if p.name == "complaint.pdf")
 
@@ -53,8 +54,11 @@ async def test_retrieval_e2e(tmp_path):
     vec_index = ChromaVectorIndex(persist_path=str(tmp_path / "chroma"))
     bm25_index = RankBm25LexicalIndex(persist_path=str(tmp_path / "bm25"))
     indexer = Indexer(
-        vec_index=vec_index, bm25_index=bm25_index, client=client,
-        embed_model=settings.embed_model, embed_dim=settings.embed_dim,
+        vec_index=vec_index,
+        bm25_index=bm25_index,
+        client=client,
+        embed_model=settings.embed_model,
+        embed_dim=settings.embed_dim,
         prefix_model=settings.extraction_model,
     )
     await indexer.index(matter_id="M-1", ingest=ingest)
@@ -66,12 +70,18 @@ async def test_retrieval_e2e(tmp_path):
         for i, cid in enumerate(got["ids"]):
             md = got["metadatas"][i]
             result[cid] = Chunk(
-                chunk_id=cid, doc_id=md["doc_id"], matter_id="M-1",
-                page=md["page"], section_label=md.get("section_label") or None,
+                chunk_id=cid,
+                doc_id=md["doc_id"],
+                matter_id="M-1",
+                page=md["page"],
+                section_label=md.get("section_label") or None,
                 para_id=None,
-                char_start=md["char_start"], char_end=md["char_end"],
-                text=got["documents"][i], context_prefix="",
-                embedding_text=got["documents"][i], embedding_dim=1536,
+                char_start=md["char_start"],
+                char_end=md["char_end"],
+                text=got["documents"][i],
+                context_prefix="",
+                embedding_text=got["documents"][i],
+                embedding_dim=1536,
                 confidence_min=md["confidence_min"],
                 contains_needs_review=md["contains_needs_review"],
                 ingest_version=md["ingest_version"],
@@ -83,8 +93,12 @@ async def test_retrieval_e2e(tmp_path):
     reranker = FlashReranker(client=client, model=settings.extraction_model)
 
     retriever = HybridRetriever(
-        vec_index=vec_index, bm25_index=bm25_index, embedder=embedder,
-        planner=planner, reranker=reranker, chunk_loader=loader,
+        vec_index=vec_index,
+        bm25_index=bm25_index,
+        embedder=embedder,
+        planner=planner,
+        reranker=reranker,
+        chunk_loader=loader,
     )
     result = await retriever.retrieve(matter_id="M-1", slot_plan=SLOT_PLAN)
     assert any(len(hits) > 0 for hits in result.slots.values())

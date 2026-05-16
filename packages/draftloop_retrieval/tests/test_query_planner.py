@@ -7,7 +7,9 @@ from draftloop_retrieval.slot_plan import SLOT_PLAN
 def test_planner_emits_paraphrases_per_slot():
     fake = MagicMock()
     resp = MagicMock()
-    resp.text = "1. Who are the parties?\n2. Identify plaintiffs and defendants.\n3. Counsel involved.\n"
+    resp.text = (
+        "1. Who are the parties?\n2. Identify plaintiffs and defendants.\n3. Counsel involved.\n"
+    )
     fake.generate.return_value = resp
     planner = QueryPlanner(client=fake, model="gemini-2.5-flash", n=3)
     qs = planner.plan(SLOT_PLAN)

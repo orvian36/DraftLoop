@@ -30,13 +30,9 @@ class IngestSuite:
             try:
                 from draftloop_ingest import IngestPipeline, IngestRequest
 
-                result = IngestPipeline().run(
-                    IngestRequest(matter_id="EVAL", source_path=str(pdf))
-                )
+                result = IngestPipeline().run(IngestRequest(matter_id="EVAL", source_path=str(pdf)))
                 if truth and truth.markdown:
-                    ratio = difflib.SequenceMatcher(
-                        None, result.markdown, truth.markdown
-                    ).ratio()
+                    ratio = difflib.SequenceMatcher(None, result.markdown, truth.markdown).ratio()
                 else:
                     # No golden truth yet — score on non-empty extraction.
                     ratio = 1.0 if result.markdown.strip() else 0.0

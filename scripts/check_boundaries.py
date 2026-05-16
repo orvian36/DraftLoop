@@ -68,9 +68,7 @@ def check_file(py: Path, root: Path) -> list[str]:
                     )
             # 3. google.genai imports outside draftloop_core/llm.py
             is_genai = (
-                target == "google.genai"
-                or target.startswith("google.genai.")
-                or target == "google"
+                target == "google.genai" or target.startswith("google.genai.") or target == "google"
             )
             if is_genai and not is_allowed_genai_module(py) and not is_exempt(lineno):
                 violations.append(

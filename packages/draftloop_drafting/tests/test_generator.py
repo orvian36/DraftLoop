@@ -8,13 +8,20 @@ from draftloop_drafting.schema import CaseFactSummary
 def test_single_call_parses_json_into_schema():
     fake = MagicMock()
     summary = {
-        "parties": [{
-            "sentence_id": "s_1", "text": "Acme vs Widgets",
-            "citations": [{"chunk_id": "c1", "quote": "Acme"}],
-            "confidence": "high",
-        }],
-        "jurisdiction": [], "key_dates": [], "claims": [],
-        "relief_sought": [], "procedural_posture": [], "key_evidence": [],
+        "parties": [
+            {
+                "sentence_id": "s_1",
+                "text": "Acme vs Widgets",
+                "citations": [{"chunk_id": "c1", "quote": "Acme"}],
+                "confidence": "high",
+            }
+        ],
+        "jurisdiction": [],
+        "key_dates": [],
+        "claims": [],
+        "relief_sought": [],
+        "procedural_posture": [],
+        "key_evidence": [],
     }
     resp = MagicMock()
     resp.text = json.dumps(summary)

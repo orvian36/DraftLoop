@@ -17,11 +17,21 @@ def fake_client():
 
 def _mk_chunk(text: str) -> Chunk:
     return Chunk(
-        chunk_id="x", doc_id="doc_3", matter_id="M-1", page=4,
-        section_label="Claims", para_id="¶12",
-        char_start=0, char_end=len(text), text=text,
-        context_prefix="", embedding_text=text, embedding_dim=1536,
-        confidence_min=1.0, contains_needs_review=False, ingest_version="v1",
+        chunk_id="x",
+        doc_id="doc_3",
+        matter_id="M-1",
+        page=4,
+        section_label="Claims",
+        para_id="¶12",
+        char_start=0,
+        char_end=len(text),
+        text=text,
+        context_prefix="",
+        embedding_text=text,
+        embedding_dim=1536,
+        confidence_min=1.0,
+        contains_needs_review=False,
+        ingest_version="v1",
     )
 
 

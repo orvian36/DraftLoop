@@ -12,7 +12,9 @@ def test_writes_audit_json(tmp_path):
         drafter_mode="single_call",
         prompt_hash="abc",
         cache_name=None,
-        retrieved_chunks=[{"chunk_id": "c1", "slot": "claims", "rerank_score": 8.0, "engines": ["dense"]}],
+        retrieved_chunks=[
+            {"chunk_id": "c1", "slot": "claims", "rerank_score": 8.0, "engines": ["dense"]}
+        ],
         exemplars_used=[],
         style_rules_active=[],
         verification={"summary": {"pass": 5}},

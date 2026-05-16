@@ -8,6 +8,7 @@ from draftloop_api.main import create_app
 def client(monkeypatch):
     monkeypatch.setenv("GEMINI_API_KEY", "sk-test")
     from draftloop_core.config import get_settings
+
     get_settings.cache_clear()
     app = create_app()
     return TestClient(app)

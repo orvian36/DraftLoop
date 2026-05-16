@@ -35,9 +35,10 @@ class SqliteDocumentStore:
             await db.commit()
 
     async def get(self, key: str) -> Any | None:
-        async with aiosqlite.connect(self._db_path) as db, db.execute(
-            "SELECT value FROM kv WHERE key = ?", (key,)
-        ) as cur:
+        async with (
+            aiosqlite.connect(self._db_path) as db,
+            db.execute("SELECT value FROM kv WHERE key = ?", (key,)) as cur,
+        ):
             row = await cur.fetchone()
         if row is None:
             return None
@@ -69,8 +70,9 @@ class SqliteDocumentStore:
 
     async def list(self, prefix: str = "") -> AsyncIterator[tuple[str, Any]]:
         like = f"{prefix}%"
-        async with aiosqlite.connect(self._db_path) as db, db.execute(
-            "SELECT key, value FROM kv WHERE key LIKE ? ORDER BY key", (like,)
-        ) as cur:
+        async with (
+            aiosqlite.connect(self._db_path) as db,
+            db.execute("SELECT key, value FROM kv WHERE key LIKE ? ORDER BY key", (like,)) as cur,
+        ):
             async for row in cur:
                 yield row[0], json.loads(row[1])

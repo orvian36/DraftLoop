@@ -36,8 +36,12 @@ class ContextualPrefixer:
             )
             resp = self._client.generate(model=self._model, contents=prompt)
             blurb = (resp.text or "").strip()
-            out.append(c.model_copy(update={
-                "context_prefix": blurb,
-                "embedding_text": (blurb + "\n\n" + c.text).strip(),
-            }))
+            out.append(
+                c.model_copy(
+                    update={
+                        "context_prefix": blurb,
+                        "embedding_text": (blurb + "\n\n" + c.text).strip(),
+                    }
+                )
+            )
         return out

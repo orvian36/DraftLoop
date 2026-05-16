@@ -57,9 +57,15 @@ class EvalRunner:
         sc = RubricScorecard.from_suite_metrics(
             {
                 "ingest": suite_results["ingest"].metrics if "ingest" in suite_results else {},
-                "retrieval": suite_results["retrieval"].metrics if "retrieval" in suite_results else {},
-                "drafting": suite_results["drafting"].metrics if "drafting" in suite_results else {},
-                "improvement": suite_results["improvement"].metrics if "improvement" in suite_results else {},
+                "retrieval": suite_results["retrieval"].metrics
+                if "retrieval" in suite_results
+                else {},
+                "drafting": suite_results["drafting"].metrics
+                if "drafting" in suite_results
+                else {},
+                "improvement": suite_results["improvement"].metrics
+                if "improvement" in suite_results
+                else {},
                 "code_quality": {"coverage": 0.85, "lint_clean": True},
                 "documentation": {"docs_lint_passed": True, "time_to_first_draft_min": 8.0},
             }

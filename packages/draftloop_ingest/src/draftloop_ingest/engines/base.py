@@ -13,13 +13,13 @@ from draftloop_ingest.types import Line, PageClass
 class ExtractedPage(BaseModel):
     model_config = ConfigDict(frozen=True)
 
-    page: int                       # 1-based
+    page: int  # 1-based
     width_px: int
     height_px: int
     dpi: int
     class_: PageClass
     lines: list[Line]
-    markdown: str                   # per-page markdown fragment, may be empty
+    markdown: str  # per-page markdown fragment, may be empty
     engine: str
 
 

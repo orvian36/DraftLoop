@@ -68,11 +68,7 @@ class ExemplarRetriever:
             if hit is None:
                 continue
             md = hit.metadata
-            classes = [
-                EditClass(c)
-                for c in (md.get("edit_classes", "") or "").split(",")
-                if c
-            ]
+            classes = [EditClass(c) for c in (md.get("edit_classes", "") or "").split(",") if c]
             created = _parse_dt(md.get("created_at", ""))
             age_days = max(0, (datetime.utcnow() - created).days)
             base = f.score * float(md.get("trust_weight", 1.0)) * math.exp(-age_days / 30.0)

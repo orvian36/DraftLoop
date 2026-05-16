@@ -24,7 +24,8 @@ class RetrievalSuite:
         positives = [qa for qa in corpus.qa_set if not qa.is_unsupported]
         hit_rate = (
             sum(1 for qa in positives if qa.must_cite_chunk_ids) / len(positives)
-            if positives else 0.0
+            if positives
+            else 0.0
         )
         return SuiteResult(
             suite_id=self.suite_id,

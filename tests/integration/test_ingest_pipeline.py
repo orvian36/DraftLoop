@@ -21,6 +21,7 @@ from draftloop_ingest import IngestPipeline, IngestRequest  # noqa: E402
 def synthetic_corpus():
     sys.path.insert(0, str(REPO_ROOT / "scripts"))
     import build_synthetic_corpus as gen
+
     return gen.build(force=False)
 
 
@@ -30,9 +31,7 @@ def test_digital_corpus_all_pages_extracted(synthetic_corpus):
     assert len(digital_pdfs) == 4
 
     for pdf in digital_pdfs:
-        result = pipeline.run(
-            IngestRequest(matter_id="TEST", source_path=str(pdf))
-        )
+        result = pipeline.run(IngestRequest(matter_id="TEST", source_path=str(pdf)))
         assert not result.failed, f"{pdf.name}: {result.fail_reason}"
         assert len(result.pages) >= 1, f"{pdf.name}: no pages extracted"
         assert all(p.class_ == "digital" for p in result.pages)

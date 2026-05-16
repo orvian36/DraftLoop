@@ -59,11 +59,15 @@ class EditClassifier:
             return [EditClass.DELETION]
 
         labels: list[EditClass] = []
-        if before_text and after_text and before_cits == after_cits and _norm(before_text) != _norm(after_text):
-            if (
-                set(_DATE_RE.findall(before_text)) != set(_DATE_RE.findall(after_text))
-                or set(_NUMBER_RE.findall(before_text)) != set(_NUMBER_RE.findall(after_text))
-            ):
+        if (
+            before_text
+            and after_text
+            and before_cits == after_cits
+            and _norm(before_text) != _norm(after_text)
+        ):
+            if set(_DATE_RE.findall(before_text)) != set(_DATE_RE.findall(after_text)) or set(
+                _NUMBER_RE.findall(before_text)
+            ) != set(_NUMBER_RE.findall(after_text)):
                 labels.append(EditClass.FACT_CORRECTION)
             if _strip_ws(before_text) == _strip_ws(after_text):
                 labels.append(EditClass.TONE)

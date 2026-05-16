@@ -9,9 +9,11 @@ def client(tmp_path, monkeypatch):
     monkeypatch.setenv("GEMINI_API_KEY", "sk-test")
     monkeypatch.setenv("DATA_DIR", str(tmp_path))
     from draftloop_core.config import get_settings
+
     get_settings.cache_clear()
     import draftloop_api.routes.drafts as drafts_mod
     import draftloop_api.routes.edits as edits_mod
+
     drafts_mod._store = None
     edits_mod._store = None
     return TestClient(create_app())

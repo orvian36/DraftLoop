@@ -24,9 +24,13 @@ class Verifier:
     def verify_fact(self, fact: Fact, chunks_by_id: dict[str, str]) -> FactVerification:
         if fact.text == UNSUPPORTED:
             return FactVerification(
-                sentence_id=fact.sentence_id, substring_passed=True,
-                hhem_score=None, llm_judge="skipped", final_verdict="pass",
-                original_text=None, fail_reason=None,
+                sentence_id=fact.sentence_id,
+                substring_passed=True,
+                hhem_score=None,
+                llm_judge="skipped",
+                final_verdict="pass",
+                original_text=None,
+                fail_reason=None,
             )
         for cit in fact.citations:
             if not self._substring_ok(cit, chunks_by_id):
@@ -40,13 +44,20 @@ class Verifier:
             verdict = self._judge(fact.text, chunk_text)
             if verdict == "unsupported":
                 return self._rewrite(
-                    fact, reason="judge_unsupported",
-                    hhem_score=None, llm_judge="unsupported", substring_passed=True,
+                    fact,
+                    reason="judge_unsupported",
+                    hhem_score=None,
+                    llm_judge="unsupported",
+                    substring_passed=True,
                 )
             return FactVerification(
-                sentence_id=fact.sentence_id, substring_passed=True,
-                hhem_score=None, llm_judge="supported", final_verdict="pass",
-                original_text=None, fail_reason=None,
+                sentence_id=fact.sentence_id,
+                substring_passed=True,
+                hhem_score=None,
+                llm_judge="supported",
+                final_verdict="pass",
+                original_text=None,
+                fail_reason=None,
             )
         if score < HHEM_LO:
             return self._rewrite(fact, reason="hhem_low", hhem_score=score, substring_passed=True)
@@ -54,18 +65,29 @@ class Verifier:
             verdict = self._judge(fact.text, chunk_text)
             if verdict == "unsupported":
                 return self._rewrite(
-                    fact, reason="judge_unsupported",
-                    hhem_score=score, llm_judge="unsupported", substring_passed=True,
+                    fact,
+                    reason="judge_unsupported",
+                    hhem_score=score,
+                    llm_judge="unsupported",
+                    substring_passed=True,
                 )
             return FactVerification(
-                sentence_id=fact.sentence_id, substring_passed=True,
-                hhem_score=score, llm_judge="supported", final_verdict="pass",
-                original_text=None, fail_reason=None,
+                sentence_id=fact.sentence_id,
+                substring_passed=True,
+                hhem_score=score,
+                llm_judge="supported",
+                final_verdict="pass",
+                original_text=None,
+                fail_reason=None,
             )
         return FactVerification(
-            sentence_id=fact.sentence_id, substring_passed=True,
-            hhem_score=score, llm_judge="skipped", final_verdict="pass",
-            original_text=None, fail_reason=None,
+            sentence_id=fact.sentence_id,
+            substring_passed=True,
+            hhem_score=score,
+            llm_judge="skipped",
+            final_verdict="pass",
+            original_text=None,
+            fail_reason=None,
         )
 
     @staticmethod
@@ -89,7 +111,9 @@ class Verifier:
 
     @staticmethod
     def _rewrite(
-        fact: Fact, *, reason: str,
+        fact: Fact,
+        *,
+        reason: str,
         substring_passed: bool = True,
         hhem_score: float | None = None,
         llm_judge: str = "skipped",

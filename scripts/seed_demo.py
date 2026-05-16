@@ -23,16 +23,17 @@ sys.path.insert(0, str(REPO_ROOT / "scripts"))
 async def _seed(force: bool) -> None:
     # The wiring uses get_settings(), which requires GEMINI_API_KEY to validate.
     # For the seed-only path we don't actually call Gemini, so any value is fine.
-    os.environ.setdefault(
-        "GEMINI_API_KEY", os.environ.get("GEMINI_API_KEY", "demo-not-used")
-    )
+    os.environ.setdefault("GEMINI_API_KEY", os.environ.get("GEMINI_API_KEY", "demo-not-used"))
     from draftloop_core.config import get_settings
+
     get_settings.cache_clear()
 
     import build_synthetic_corpus as corpus_gen
+
     corpus_gen.build(force=force)
 
     from draftloop_api.wiring import blob_store, document_store, reset_singletons
+
     reset_singletons()
     store = document_store()
     await store.init_schema()

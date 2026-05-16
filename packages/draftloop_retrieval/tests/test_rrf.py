@@ -25,7 +25,9 @@ def test_rrf_engine_attribution():
     dense = [("a", 0.9)]
     sparse = [("a", 5.0)]
     fused = rrf_fuse(
-        [dense, sparse], k=60, top_k=1,
+        [dense, sparse],
+        k=60,
+        top_k=1,
         engine_names=["dense", "bm25"],
     )
     assert set(fused[0].engines) == {"dense", "bm25"}

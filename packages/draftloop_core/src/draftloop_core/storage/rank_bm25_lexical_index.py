@@ -68,9 +68,7 @@ class RankBm25LexicalIndex:
             return []
         bm25 = BM25Okapi([d["tokens"] for d in docs])
         scores = bm25.get_scores(_tokenize(query))
-        ranked = sorted(
-            zip(docs, scores, strict=True), key=lambda x: x[1], reverse=True
-        )[:top_k]
+        ranked = sorted(zip(docs, scores, strict=True), key=lambda x: x[1], reverse=True)[:top_k]
         return [LexicalHit(id=d["id"], score=float(s), text=d["text"]) for d, s in ranked]
 
     def _load(self, collection: str) -> list[dict]:

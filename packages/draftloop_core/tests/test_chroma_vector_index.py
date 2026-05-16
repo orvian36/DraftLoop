@@ -26,8 +26,12 @@ async def test_upsert_then_search_returns_nearest(index):
 
 
 async def test_filters_honored(index):
-    await index.upsert("M-1", [VectorItem(id="x", vector=[1.0, 0.0], metadata={"matter_id": "M-1", "page": 4})])
-    await index.upsert("M-1", [VectorItem(id="y", vector=[1.0, 0.0], metadata={"matter_id": "M-1", "page": 9})])
+    await index.upsert(
+        "M-1", [VectorItem(id="x", vector=[1.0, 0.0], metadata={"matter_id": "M-1", "page": 4})]
+    )
+    await index.upsert(
+        "M-1", [VectorItem(id="y", vector=[1.0, 0.0], metadata={"matter_id": "M-1", "page": 9})]
+    )
     hits = await index.search("M-1", [1.0, 0.0], top_k=10, filters={"page": 4})
     ids = [h.id for h in hits]
     assert "x" in ids and "y" not in ids

@@ -64,9 +64,7 @@ class ShadcnInstaller:
         except (json.JSONDecodeError, KeyError, OSError):
             return []
 
-    def add_components(
-        self, components: List[str], overwrite: bool = False
-    ) -> tuple[bool, str]:
+    def add_components(self, components: List[str], overwrite: bool = False) -> tuple[bool, str]:
         """
         Add shadcn/ui components.
 

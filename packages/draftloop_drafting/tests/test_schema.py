@@ -14,7 +14,8 @@ def test_fact_requires_at_least_one_citation_unless_unsupported():
     with pytest.raises(ValidationError):
         Fact(sentence_id="s_1", text="claim", citations=[], confidence="high")
     f = Fact(
-        sentence_id="s_1", text="claim",
+        sentence_id="s_1",
+        text="claim",
         citations=[Citation(chunk_id="c1", quote="evidence")],
         confidence="high",
     )
@@ -27,10 +28,19 @@ def test_unsupported_sentinel_allows_empty_citations():
 
 
 def test_case_fact_summary_holds_all_slots():
-    f = Fact(sentence_id="s_1", text="x",
-             citations=[Citation(chunk_id="c1", quote="y")], confidence="high")
+    f = Fact(
+        sentence_id="s_1",
+        text="x",
+        citations=[Citation(chunk_id="c1", quote="y")],
+        confidence="high",
+    )
     summary = CaseFactSummary(
-        parties=[f], jurisdiction=[f], key_dates=[f], claims=[f],
-        relief_sought=[f], procedural_posture=[f], key_evidence=[f],
+        parties=[f],
+        jurisdiction=[f],
+        key_dates=[f],
+        claims=[f],
+        relief_sought=[f],
+        procedural_posture=[f],
+        key_evidence=[f],
     )
     assert len(summary.parties) == 1

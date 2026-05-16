@@ -49,6 +49,7 @@ class IngestPipeline:
             else:
                 try:
                     from draftloop_ingest.engines.paddle_engine import PaddleEngine
+
                     self._paddle = PaddleEngine()
                 except Exception as exc:
                     logger.warning("ingest.paddle_unavailable", error=str(exc))
@@ -62,6 +63,7 @@ class IngestPipeline:
             else:
                 try:
                     from draftloop_ingest.engines.tesseract_engine import TesseractEngine
+
                     self._tesseract = TesseractEngine()
                 except Exception as exc:
                     logger.warning("ingest.tesseract_unavailable", error=str(exc))
@@ -104,6 +106,7 @@ class IngestPipeline:
             page_no = idx + 1
             image_bytes = rasterize_page(req.source_path, idx, dpi=300)
             from draftloop_ingest.preprocess import preprocess_image
+
             preprocessed = preprocess_image(image_bytes)
 
             probe = probes[idx]
@@ -151,8 +154,7 @@ class IngestPipeline:
         emitted_pages: list[Page] = []
         for ep in pages_list:
             page_conf = (
-                sum(line.confidence for line in ep.lines) / len(ep.lines)
-                if ep.lines else 0.0
+                sum(line.confidence for line in ep.lines) / len(ep.lines) if ep.lines else 0.0
             )
             confs.append(page_conf)
             page_needs_review = any(line.needs_review for line in ep.lines)

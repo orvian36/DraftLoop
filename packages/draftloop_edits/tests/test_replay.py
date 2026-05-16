@@ -9,7 +9,9 @@ def test_replay_emits_report_per_week():
     bank = MagicMock()
     exemplars_at = MagicMock(return_value=[])
     harness = ReplayHarness(
-        drafter=drafter, memory_bank=bank, exemplars_frozen_at=exemplars_at,
+        drafter=drafter,
+        memory_bank=bank,
+        exemplars_frozen_at=exemplars_at,
     )
     rep = harness.run(
         matters=[{"matter_id": "M-1", "draft_id": "D-1", "approved_final_draft": "final text"}],
@@ -23,7 +25,9 @@ def test_replay_handles_empty_matters():
     drafter = MagicMock()
     bank = MagicMock()
     harness = ReplayHarness(
-        drafter=drafter, memory_bank=bank, exemplars_frozen_at=MagicMock(return_value=[]),
+        drafter=drafter,
+        memory_bank=bank,
+        exemplars_frozen_at=MagicMock(return_value=[]),
     )
     rep = harness.run(matters=[], week_ending="2026-05-15")
     assert rep.matters_replayed == 0

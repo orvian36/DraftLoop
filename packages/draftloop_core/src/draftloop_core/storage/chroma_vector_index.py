@@ -72,12 +72,14 @@ class ChromaVectorIndex:
         for i, did in enumerate(ids):
             distance = distances[i] if i < len(distances) else 0.0
             score = 1.0 - float(distance)
-            out.append(VectorHit(
-                id=did,
-                score=score,
-                metadata=metadatas[i] if i < len(metadatas) else {},
-                document=documents[i] if i < len(documents) else None,
-            ))
+            out.append(
+                VectorHit(
+                    id=did,
+                    score=score,
+                    metadata=metadatas[i] if i < len(metadatas) else {},
+                    document=documents[i] if i < len(documents) else None,
+                )
+            )
         return out
 
     async def delete_collection(self, collection: str) -> None:
@@ -86,4 +88,5 @@ class ChromaVectorIndex:
                 self._client.delete_collection(collection)
             except Exception:
                 pass
+
         await asyncio.to_thread(_do)

@@ -38,9 +38,7 @@ def test_pipeline_scan_path(tmp_path):
     pdf = tmp_path / "notice.pdf"
     _make_scanned_pdf(pdf)
     pipeline = IngestPipeline()
-    result = pipeline.run(
-        IngestRequest(matter_id="M-001", source_path=str(pdf))
-    )
+    result = pipeline.run(IngestRequest(matter_id="M-001", source_path=str(pdf)))
     assert result.failed is False
     assert len(result.pages) == 1
     text = " ".join(line.text for line in result.pages[0].lines)

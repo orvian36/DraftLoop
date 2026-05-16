@@ -41,9 +41,7 @@ class TrustEngine:
             return
         self.reversions_against[event.original_op] += 1
         self.reversions_caused[event.reverter] += 1
-        self.weights[event.original_op] = max(
-            0.0, self.weights[event.original_op] * 0.3
-        )
+        self.weights[event.original_op] = max(0.0, self.weights[event.original_op] * 0.3)
 
     def score(self, operator_id: str):
         from draftloop_edits.types import TrustScore

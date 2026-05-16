@@ -12,10 +12,21 @@ from draftloop_retrieval.types import Chunk
 
 def _chunk(cid: str) -> Chunk:
     return Chunk(
-        chunk_id=cid, doc_id="d", matter_id="M-1", page=1, section_label=None,
-        para_id=None, char_start=0, char_end=10, text=f"text {cid}",
-        context_prefix="", embedding_text=f"text {cid}", embedding_dim=1536,
-        confidence_min=1.0, contains_needs_review=False, ingest_version="v1",
+        chunk_id=cid,
+        doc_id="d",
+        matter_id="M-1",
+        page=1,
+        section_label=None,
+        para_id=None,
+        char_start=0,
+        char_end=10,
+        text=f"text {cid}",
+        context_prefix="",
+        embedding_text=f"text {cid}",
+        embedding_dim=1536,
+        confidence_min=1.0,
+        contains_needs_review=False,
+        ingest_version="v1",
     )
 
 
@@ -36,9 +47,16 @@ async def test_retriever_runs_full_pipeline_per_slot():
         return {i: _chunk(i) for i in ids}
 
     retriever = HybridRetriever(
-        vec_index=vec_index, bm25_index=bm25_index, embedder=embedder,
-        planner=planner, reranker=reranker, chunk_loader=loader,
-        rrf_k=60, dense_top=10, bm25_top=10, rerank_top=5,
+        vec_index=vec_index,
+        bm25_index=bm25_index,
+        embedder=embedder,
+        planner=planner,
+        reranker=reranker,
+        chunk_loader=loader,
+        rrf_k=60,
+        dense_top=10,
+        bm25_top=10,
+        rerank_top=5,
     )
     result = await retriever.retrieve(matter_id="M-1", slot_plan=SLOT_PLAN)
     assert set(result.slots.keys()) == {s.name for s in SLOT_PLAN}
@@ -63,8 +81,12 @@ async def test_retriever_empty_fusion_returns_empty_slot():
     reranker.rerank.return_value = []
 
     retriever = HybridRetriever(
-        vec_index=vec_index, bm25_index=bm25_index, embedder=embedder,
-        planner=planner, reranker=reranker, chunk_loader=lambda ids: {},
+        vec_index=vec_index,
+        bm25_index=bm25_index,
+        embedder=embedder,
+        planner=planner,
+        reranker=reranker,
+        chunk_loader=lambda ids: {},
     )
     result = await retriever.retrieve(matter_id="M-1", slot_plan=SLOT_PLAN[:2])
     assert all(hits == [] for hits in result.slots.values())

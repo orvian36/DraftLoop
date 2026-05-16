@@ -22,9 +22,7 @@ class TesseractEngine:
         dpi: int,
     ) -> ExtractedPage:
         img = Image.open(BytesIO(image_bytes))
-        data = pytesseract.image_to_data(
-            img, output_type=pytesseract.Output.DICT, config="--psm 6"
-        )
+        data = pytesseract.image_to_data(img, output_type=pytesseract.Output.DICT, config="--psm 6")
 
         grouped: dict[tuple[int, int, int], list[int]] = {}
         for i in range(len(data["text"])):

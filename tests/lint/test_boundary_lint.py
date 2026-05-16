@@ -84,9 +84,7 @@ def test_boundary_allow_comment_escape(tmp_path):
     """Inline `# boundary: allow` should exempt a single import."""
     pkg = tmp_path / "packages" / "draftloop_ingest" / "src" / "draftloop_ingest"
     pkg.mkdir(parents=True)
-    (pkg / "__init__.py").write_text(
-        "from google import genai  # boundary: allow demo escape\n"
-    )
+    (pkg / "__init__.py").write_text("from google import genai  # boundary: allow demo escape\n")
 
     script = Path(__file__).parents[2] / "scripts" / "check_boundaries.py"
     result = subprocess.run(

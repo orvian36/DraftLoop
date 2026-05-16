@@ -54,9 +54,7 @@ class Indexer:
             return IndexResult(matter_id=matter_id, doc_id=ingest.doc_id, chunks_indexed=0)
 
         prefixed = self._prefixer.prefix(chunks)
-        vectors = self._embedder.embed_documents(
-            [c.embedding_text for c in prefixed]
-        )
+        vectors = self._embedder.embed_documents([c.embedding_text for c in prefixed])
         items = [
             VectorItem(
                 id=c.chunk_id,

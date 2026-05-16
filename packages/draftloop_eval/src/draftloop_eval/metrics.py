@@ -57,31 +57,47 @@ class RubricScorecard:
         docs = suites.get("documentation", {})
         cells = {
             "doc_processing": _cell(
-                "Document Processing", 25,
-                "extraction_f1", ing.get("extraction_f1", 0.0), 0.90,
+                "Document Processing",
+                25,
+                "extraction_f1",
+                ing.get("extraction_f1", 0.0),
+                0.90,
             ),
             "retrieval": _cell(
-                "Retrieval & Grounding", 25,
-                "context_precision_at_10", ret.get("context_precision_at_10", 0.0), 0.75,
+                "Retrieval & Grounding",
+                25,
+                "context_precision_at_10",
+                ret.get("context_precision_at_10", 0.0),
+                0.75,
             ),
             "draft_quality": _cell(
-                "Draft Quality", 10,
-                "faithfulness", dft.get("faithfulness", 0.0), 0.85,
+                "Draft Quality",
+                10,
+                "faithfulness",
+                dft.get("faithfulness", 0.0),
+                0.85,
             ),
             "improvement": _cell(
-                "Improvement from Edits", 25,
+                "Improvement from Edits",
+                25,
                 "edit_distance_p50_trend_pct",
                 imp.get("edit_distance_p50_trend_pct", 0.0),
                 -15.0,
                 lower_is_better=True,
             ),
             "code_quality": _cell(
-                "Code Quality & Design", 10,
-                "coverage", cq.get("coverage", 0.0), 0.80,
+                "Code Quality & Design",
+                10,
+                "coverage",
+                cq.get("coverage", 0.0),
+                0.80,
             ),
             "documentation": _cell(
-                "Documentation & Clarity", 5,
-                "docs_lint_passed", docs.get("docs_lint_passed", False), True,
+                "Documentation & Clarity",
+                5,
+                "docs_lint_passed",
+                docs.get("docs_lint_passed", False),
+                True,
             ),
         }
         return cls(cells=cells)

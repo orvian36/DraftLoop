@@ -24,6 +24,7 @@ def fake_sdk(monkeypatch):
     fake_client.models.embed_content.return_value = fake_emb_resp
 
     import draftloop_core.llm as llm_mod
+
     monkeypatch.setattr(llm_mod, "_build_sdk_client", lambda: fake_client)
     return fake_client
 

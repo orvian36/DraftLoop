@@ -16,9 +16,7 @@ EngineName = Literal[
     "gemini_vision",
     "trocr",
 ]
-PageClass = Literal[
-    "digital", "clean_scan", "low_res", "handwritten", "photo", "mixed"
-]
+PageClass = Literal["digital", "clean_scan", "low_res", "handwritten", "photo", "mixed"]
 ReviewReason = Literal["low_ocr_conf", "illegible", "blurry", "redacted"]
 
 

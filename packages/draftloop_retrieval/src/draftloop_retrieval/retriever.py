@@ -64,7 +64,9 @@ class HybridRetriever:
             chunks_by_id = self.chunk_loader(ids_in_order)
             candidates_text = [chunks_by_id[i].text for i in ids_in_order if i in chunks_by_id]
             ranked = self.reranker.rerank(
-                query=slot.intent, candidates=candidates_text, top_k=self.rerank_top,
+                query=slot.intent,
+                candidates=candidates_text,
+                top_k=self.rerank_top,
             )
 
             hits_out: list[RetrievalHit] = []

@@ -45,6 +45,10 @@ class RuleInducer:
             return None
         rule_id = "rule_" + hashlib.sha1(f"{evt.event_id}|{text}".encode()).hexdigest()[:10]
         return InducedRule(
-            rule_id=rule_id, event_id=evt.event_id, text=text,
-            trust_weight=1.0, pinned=False, created_at=datetime.utcnow(),
+            rule_id=rule_id,
+            event_id=evt.event_id,
+            text=text,
+            trust_weight=1.0,
+            pinned=False,
+            created_at=datetime.utcnow(),
         )

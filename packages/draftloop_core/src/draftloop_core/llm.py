@@ -118,9 +118,7 @@ class GeminiClient:
         output_dimensionality: int,
     ) -> list[list[float]]:
         if len(contents) > EMBED_BATCH_CAP:
-            raise ValueError(
-                f"embed batch size {len(contents)} exceeds cap {EMBED_BATCH_CAP}"
-            )
+            raise ValueError(f"embed batch size {len(contents)} exceeds cap {EMBED_BATCH_CAP}")
 
         try:
             if hasattr(genai_types, "EmbedContentConfig"):

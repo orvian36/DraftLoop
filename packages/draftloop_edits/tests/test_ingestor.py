@@ -16,12 +16,20 @@ async def store(tmp_path):
 
 def _event(eid: str) -> EditEvent:
     return EditEvent(
-        event_id=eid, draft_id="D-1", matter_id="M-1", slot="claims",
-        sentence_id="s_1", op="fact_text_changed",
-        before={"text": "x"}, after={"text": "y"},
-        source_evidence_ids=["c1"], word_diff="@@-x+y@@",
-        time_to_edit_ms=5000, operator_id="op1",
-        draft_model_version="v1", prompt_hash="h",
+        event_id=eid,
+        draft_id="D-1",
+        matter_id="M-1",
+        slot="claims",
+        sentence_id="s_1",
+        op="fact_text_changed",
+        before={"text": "x"},
+        after={"text": "y"},
+        source_evidence_ids=["c1"],
+        word_diff="@@-x+y@@",
+        time_to_edit_ms=5000,
+        operator_id="op1",
+        draft_model_version="v1",
+        prompt_hash="h",
         timestamp=datetime.utcnow().isoformat(),
     )
 

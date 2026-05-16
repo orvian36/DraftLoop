@@ -17,6 +17,7 @@ def _get_store() -> SqliteDocumentStore:
     if _store is None:
         settings = get_settings()
         from pathlib import Path
+
         Path(settings.data_dir).mkdir(parents=True, exist_ok=True)
         _store = SqliteDocumentStore(f"{settings.data_dir}/draftloop.db")
     return _store
