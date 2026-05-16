@@ -1,0 +1,15 @@
+.git
+.gitignore
+.venv
+node_modules
+data
+.next
+dist
+__pycache__
+*.pyc
+*.tsbuildinfo
+.pytest_cache
+.mypy_cache
+.ruff_cache
+.turbo
+docs/eval-reports

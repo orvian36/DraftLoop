@@ -1,0 +1,28 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    env_file: .env
+    ports:
+      - "${PORT_API:-8000}:8000"
+    volumes:
+      - ./data:/app/data
+    healthcheck:
+      test: ["CMD-SHELL", "python -c \"import urllib.request,sys; sys.exit(0 if 'ok' in urllib.request.urlopen('http://localhost:8000/health').read().decode() else 1)\""]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    env_file: .env
+    ports:
+      - "${PORT_WEB:-3000}:3000"
+    environment:
+      - NEXT_PUBLIC_API_BASE=http://localhost:${PORT_API:-8000}
+    depends_on:
+      api:
+        condition: service_healthy
