@@ -6,6 +6,7 @@ requires-python = "==3.12.*"
 members = [
     "draftloop-api",
     "draftloop-core",
+    "draftloop-drafting",
     "draftloop-ingest",
     "draftloop-retrieval",
     "draftloop-workspace",
@@ -371,6 +372,21 @@ requires-dist = [
     { name = "structlog", specifier = ">=24.4.0" },
     { name = "tenacity", specifier = ">=9.0.0" },
     { name = "ulid-py", specifier = ">=1.1.0" },
+]
+
+[[package]]
+name = "draftloop-drafting"
+version = "0.1.0"
+source = { editable = "packages/draftloop_drafting" }
+dependencies = [
+    { name = "draftloop-core" },
+    { name = "draftloop-retrieval" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "draftloop-core", editable = "packages/draftloop_core" },
+    { name = "draftloop-retrieval", editable = "packages/draftloop_retrieval" },
 ]
 
 [[package]]
