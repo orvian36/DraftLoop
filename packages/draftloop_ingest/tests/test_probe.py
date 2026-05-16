@@ -1,7 +1,6 @@
+from draftloop_ingest.probe import PageProbe, probe_pdf
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
-
-from draftloop_ingest.probe import PageProbe, probe_pdf
 
 
 def _make_digital_pdf(path) -> None:

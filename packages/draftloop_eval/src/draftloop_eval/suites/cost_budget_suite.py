@@ -13,7 +13,7 @@ class CostBudgetSuite:
     budget_usd: float = 2.0
 
     def run(self) -> SuiteResult:
-        # Real implementation replays VCR cassettes and counts tokens × prices.
+        # Real implementation replays VCR cassettes and counts tokens x prices.
         return SuiteResult(
             suite_id=self.suite_id,
             metrics={"recorded_cost_usd": 0.0, "budget_usd": self.budget_usd},

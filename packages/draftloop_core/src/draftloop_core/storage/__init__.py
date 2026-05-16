@@ -11,7 +11,7 @@ from draftloop_core.storage.vector_index import VectorHit, VectorIndex, VectorIt
 __all__ = [
     "BlobStore",
     "DocumentStore",
+    "VectorHit",
     "VectorIndex",
     "VectorItem",
-    "VectorHit",
 ]

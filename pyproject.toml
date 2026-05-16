@@ -33,7 +33,7 @@ draftloop-eval = { workspace = true }
 [tool.ruff]
 line-length = 100
 target-version = "py312"
-extend-exclude = ["data", "node_modules", ".venv"]
+extend-exclude = ["data", "node_modules", ".venv", ".agents"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP", "ASYNC", "C4", "SIM", "RUF"]
@@ -41,6 +41,7 @@ ignore = ["E501"]
 
 [tool.ruff.lint.per-file-ignores]
 "tests/**" = ["B011"]
+"apps/api/src/draftloop_api/routes/*.py" = ["B008"]
 
 [tool.mypy]
 python_version = "3.12"

@@ -1,7 +1,5 @@
 from unittest.mock import AsyncMock, MagicMock
 
-import pytest
-
 from draftloop_core.storage import VectorHit
 from draftloop_core.storage.rank_bm25_lexical_index import LexicalHit
 from draftloop_retrieval.reranker import RerankedItem

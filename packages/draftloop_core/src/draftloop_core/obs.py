@@ -6,6 +6,7 @@ Every public entry point in a package should be wrapped with
 
 from __future__ import annotations
 
+import contextlib
 import functools
 import logging
 import sys
@@ -49,11 +50,9 @@ def configure_logging(level: str = "INFO") -> None:
     if not _LOGGING_CONFIGURED:
         provider = TracerProvider(resource=Resource.create({"service.name": "draftloop"}))
         provider.add_span_processor(SimpleSpanProcessor(ConsoleSpanExporter()))
-        try:
+        # Tracer provider may already be set in test contexts; ignore.
+        with contextlib.suppress(Exception):
             trace.set_tracer_provider(provider)
-        except Exception:
-            # Tracer provider may already be set in test contexts; ignore.
-            pass
         _LOGGING_CONFIGURED = True
 
 

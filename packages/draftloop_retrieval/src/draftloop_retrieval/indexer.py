@@ -7,8 +7,8 @@ from dataclasses import dataclass
 from draftloop_core.llm import GeminiClient
 from draftloop_core.storage import VectorIndex, VectorItem
 from draftloop_core.storage.rank_bm25_lexical_index import LexicalDoc, RankBm25LexicalIndex
-
 from draftloop_ingest.types import IngestResult
+
 from draftloop_retrieval.embedder import GeminiEmbedder
 from draftloop_retrieval.prefixer import ContextualPrefixer
 from draftloop_retrieval.splitter import StructuralSplitter

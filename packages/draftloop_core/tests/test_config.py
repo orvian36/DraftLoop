@@ -1,5 +1,4 @@
 import pytest
-
 from draftloop_core.config import Settings, get_settings
 from draftloop_core.errors import ConfigError
 

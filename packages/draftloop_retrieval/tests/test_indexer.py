@@ -1,7 +1,6 @@
 from unittest.mock import AsyncMock, MagicMock
 
 import pytest
-
 from draftloop_ingest.types import IngestResult
 from draftloop_retrieval.indexer import Indexer
 from draftloop_retrieval.splitter import StructuralSplitter

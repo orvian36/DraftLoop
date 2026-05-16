@@ -2,7 +2,6 @@ from datetime import datetime
 from unittest.mock import MagicMock
 
 import numpy as np
-
 from draftloop_edits.catalog import RuleCatalog
 from draftloop_edits.types import InducedRule
 

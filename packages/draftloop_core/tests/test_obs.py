@@ -1,5 +1,4 @@
 import structlog
-
 from draftloop_core.obs import configure_logging, get_logger, traced
 
 

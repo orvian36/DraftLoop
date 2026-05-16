@@ -1,5 +1,4 @@
 import pytest
-
 from draftloop_ingest.types import (
     DocStatus,
     IngestRequest,
@@ -8,6 +7,7 @@ from draftloop_ingest.types import (
     NeedsReviewSpan,
     Page,
 )
+from pydantic import ValidationError
 
 
 def test_line_invariant_low_conf_is_review():
@@ -39,7 +39,7 @@ def test_doc_status_transitions_are_well_defined():
 
 
 def test_ingest_request_requires_source_path():
-    with pytest.raises(Exception):
+    with pytest.raises(ValidationError):
         IngestRequest()
     req = IngestRequest(matter_id="M-001", source_path="/tmp/x.pdf")
     assert req.matter_id == "M-001"

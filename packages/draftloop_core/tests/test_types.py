@@ -1,6 +1,4 @@
 import pytest
-from pydantic import ValidationError  # noqa: F401  (kept for parity with the plan spec)
-
 from draftloop_core.types import (
     ChunkId,
     DocId,
@@ -9,6 +7,7 @@ from draftloop_core.types import (
     NeedsReview,
     RetrievalEngine,
 )
+from pydantic import ValidationError  # noqa: F401  (kept for parity with the plan spec)
 
 
 def test_id_aliases_are_strings():

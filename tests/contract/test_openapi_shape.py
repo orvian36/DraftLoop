@@ -3,9 +3,8 @@ metadata must be stable so the generated TS client doesn't churn.
 """
 
 import pytest
-from fastapi.testclient import TestClient
-
 from draftloop_api.main import create_app
+from fastapi.testclient import TestClient
 
 
 @pytest.fixture

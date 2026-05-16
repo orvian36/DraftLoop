@@ -1,7 +1,6 @@
+from draftloop_ingest.engines.pymupdf4llm_engine import Pdf4llmExtractor
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
-
-from draftloop_ingest.engines.pymupdf4llm_engine import Pdf4llmExtractor
 
 
 def _make_digital_pdf(path) -> None:

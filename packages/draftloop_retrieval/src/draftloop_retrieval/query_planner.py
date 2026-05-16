@@ -5,6 +5,7 @@ from __future__ import annotations
 import re
 
 from draftloop_core.llm import GeminiClient
+
 from draftloop_retrieval.slot_plan import Slot
 
 PROMPT = """Generate {n} distinct paraphrases of the following retrieval intent.

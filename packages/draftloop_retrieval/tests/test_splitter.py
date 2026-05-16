@@ -1,6 +1,5 @@
 from draftloop_retrieval.splitter import StructuralSplitter
 
-
 SAMPLE_MARKDOWN = """<!-- page=1 -->
 # COMPLAINT
 

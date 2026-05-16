@@ -1,5 +1,4 @@
 import pytest
-
 from draftloop_core.storage import BlobStore
 from draftloop_core.storage.local_blob_store import LocalBlobStore
 

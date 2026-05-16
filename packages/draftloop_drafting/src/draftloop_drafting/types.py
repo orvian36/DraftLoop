@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing import Any, Literal
 
+from draftloop_retrieval.types import RetrievalHit
 from pydantic import BaseModel, ConfigDict, Field
 
 from draftloop_drafting.schema import CaseFactSummary
-from draftloop_retrieval.types import RetrievalHit
 
 
 class DraftRequest(BaseModel):

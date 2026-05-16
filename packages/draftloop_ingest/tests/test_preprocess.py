@@ -1,7 +1,6 @@
 import cv2
 import numpy as np
 import pytest
-
 from draftloop_ingest.preprocess import preprocess_image
 
 

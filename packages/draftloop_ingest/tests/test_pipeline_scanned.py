@@ -2,11 +2,10 @@ import importlib.util
 import shutil
 
 import pytest
+from draftloop_ingest import IngestPipeline, IngestRequest
 from PIL import Image, ImageDraw, ImageFont
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
-
-from draftloop_ingest import IngestPipeline, IngestRequest
 
 paddleocr_available = importlib.util.find_spec("paddleocr") is not None
 tesseract_available = shutil.which("tesseract") is not None

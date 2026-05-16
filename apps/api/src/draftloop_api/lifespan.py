@@ -6,10 +6,9 @@ import time
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI
-
 from draftloop_core.config import get_settings
 from draftloop_core.obs import configure_logging, get_logger
+from fastapi import FastAPI
 
 logger = get_logger("draftloop.api")
 

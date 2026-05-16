@@ -9,7 +9,6 @@ from pathlib import Path
 
 from rank_bm25 import BM25Okapi
 
-
 _STATUTE_RE = re.compile(r"\d{1,3}\s+U\.?S\.?C\.?\s*§\s*\d+(?:\(\w+\))?")
 _REPORTER_RE = re.compile(r"\d+\s+U\.?S\.?\s+\d+")
 

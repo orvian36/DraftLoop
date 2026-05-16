@@ -1,5 +1,4 @@
 import pytest
-
 from draftloop_core.storage import VectorIndex, VectorItem
 from draftloop_core.storage.chroma_vector_index import ChromaVectorIndex
 

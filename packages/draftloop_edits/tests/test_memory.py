@@ -2,7 +2,6 @@ from datetime import datetime
 from unittest.mock import AsyncMock, MagicMock
 
 import pytest
-
 from draftloop_edits.memory import EditMemoryBank
 from draftloop_edits.types import EditClass, InducedRule
 

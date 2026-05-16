@@ -1,5 +1,4 @@
 import pytest
-
 from draftloop_core.storage import DocumentStore
 from draftloop_core.storage.sqlite_document_store import SqliteDocumentStore
 

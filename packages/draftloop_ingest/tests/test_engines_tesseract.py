@@ -2,9 +2,8 @@ import shutil
 from io import BytesIO
 
 import pytest
-from PIL import Image, ImageDraw, ImageFont
-
 from draftloop_ingest.engines.tesseract_engine import TesseractEngine
+from PIL import Image, ImageDraw, ImageFont
 
 pytestmark = pytest.mark.skipif(
     shutil.which("tesseract") is None,

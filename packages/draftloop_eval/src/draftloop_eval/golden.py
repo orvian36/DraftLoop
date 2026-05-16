@@ -6,9 +6,8 @@ import json
 from pathlib import Path
 from typing import Literal
 
-from pydantic import BaseModel, Field
-
 from draftloop_edits.types import EditEvent
+from pydantic import BaseModel, Field
 
 
 class GoldenDoc(BaseModel):

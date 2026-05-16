@@ -1,15 +1,14 @@
 import pytest
-from fastapi.testclient import TestClient
-
 from draftloop_api.main import create_app
+from fastapi.testclient import TestClient
 
 
 @pytest.fixture
 def client(tmp_path, monkeypatch):
     monkeypatch.setenv("GEMINI_API_KEY", "sk-test")
     monkeypatch.setenv("DATA_DIR", str(tmp_path))
-    from draftloop_core.config import get_settings
     from draftloop_api.wiring import reset_singletons
+    from draftloop_core.config import get_settings
 
     get_settings.cache_clear()
     reset_singletons()

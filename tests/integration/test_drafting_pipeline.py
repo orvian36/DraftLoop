@@ -8,7 +8,6 @@ from __future__ import annotations
 from unittest.mock import MagicMock
 
 from draftloop_drafting.audit_trail import AuditTrailWriter
-from draftloop_drafting.generator import Generator
 from draftloop_drafting.orchestrator import Drafter
 from draftloop_drafting.prompt_assembler import PromptAssembler
 from draftloop_drafting.schema import UNSUPPORTED, CaseFactSummary, Citation, Fact

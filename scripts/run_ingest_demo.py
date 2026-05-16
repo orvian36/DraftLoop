@@ -5,12 +5,11 @@ from __future__ import annotations
 
 import argparse
 import os
-import sys
 from pathlib import Path
 
 os.environ.setdefault("GEMINI_API_KEY", "demo-not-used")
 
-from draftloop_ingest import IngestPipeline, IngestRequest  # noqa: E402
+from draftloop_ingest import IngestPipeline, IngestRequest
 
 
 def main() -> int:

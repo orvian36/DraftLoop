@@ -1,7 +1,6 @@
 from unittest.mock import AsyncMock, MagicMock
 
 import pytest
-
 from draftloop_core.storage import VectorHit
 from draftloop_edits.exemplars import ExemplarRetriever
 from draftloop_edits.types import EditClass

@@ -15,12 +15,12 @@ from draftloop_ingest.types import (
 )
 
 __all__ = [
+    "DocStatus",
     "IngestPipeline",
     "IngestRequest",
     "IngestResult",
-    "Page",
     "Line",
     "NeedsReviewSpan",
-    "DocStatus",
+    "Page",
 ]
 __version__ = "0.1.0"

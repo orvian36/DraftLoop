@@ -1,7 +1,6 @@
 import pytest
-from pydantic import ValidationError
-
 from draftloop_drafting.schema import UNSUPPORTED, CaseFactSummary, Citation, Fact
+from pydantic import ValidationError
 
 
 def test_citation_quote_capped_at_240():

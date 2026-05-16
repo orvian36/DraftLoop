@@ -1,7 +1,6 @@
 from datetime import datetime
 
 import pytest
-
 from draftloop_core.storage.sqlite_document_store import SqliteDocumentStore
 from draftloop_edits.ingestor import EditIngestor
 from draftloop_edits.types import EditEvent

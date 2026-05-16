@@ -55,17 +55,15 @@ def check_file(py: Path, root: Path) -> list[str]:
     for node in ast.walk(tree):
         for target, lineno in _import_targets(node):
             # 1. _internal imports
-            if "._internal" in target or target.endswith("._internal"):
-                if not is_exempt(lineno):
-                    violations.append(
-                        f"{py.relative_to(root)}:{lineno}: forbidden _internal import: {target}"
-                    )
+            if ("._internal" in target or target.endswith("._internal")) and not is_exempt(lineno):
+                violations.append(
+                    f"{py.relative_to(root)}:{lineno}: forbidden _internal import: {target}"
+                )
             # 2. apps imports
-            if target.startswith("apps.") or target == "apps":
-                if not is_exempt(lineno):
-                    violations.append(
-                        f"{py.relative_to(root)}:{lineno}: package may not import from apps: {target}"
-                    )
+            if (target.startswith("apps.") or target == "apps") and not is_exempt(lineno):
+                violations.append(
+                    f"{py.relative_to(root)}:{lineno}: package may not import from apps: {target}"
+                )
             # 3. google.genai imports outside draftloop_core/llm.py
             is_genai = (
                 target == "google.genai" or target.startswith("google.genai.") or target == "google"

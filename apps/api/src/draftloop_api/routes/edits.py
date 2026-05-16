@@ -5,10 +5,9 @@ from __future__ import annotations
 import time
 from typing import Any
 
-from fastapi import APIRouter, HTTPException, Request, Response
-
 from draftloop_core.config import get_settings
 from draftloop_core.storage.sqlite_document_store import SqliteDocumentStore
+from fastapi import APIRouter, HTTPException, Request, Response
 
 router = APIRouter(prefix="/api/matters/{matter_id}/drafts")
 

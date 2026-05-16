@@ -32,10 +32,7 @@ def _deskew(img: np.ndarray) -> np.ndarray:
     if coords.size == 0:
         return img
     angle = cv2.minAreaRect(coords)[-1]
-    if angle < -45:
-        angle = -(90 + angle)
-    else:
-        angle = -angle
+    angle = -(90 + angle) if angle < -45 else -angle
     if abs(angle) < 0.2:
         return img
     h, w = img.shape

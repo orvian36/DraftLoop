@@ -7,7 +7,7 @@ from draftloop_ingest.engines.pymupdf4llm_engine import Pdf4llmExtractor
 
 __all__ = [
     "DigitalExtractor",
-    "OcrEngine",
     "ExtractedPage",
+    "OcrEngine",
     "Pdf4llmExtractor",
 ]

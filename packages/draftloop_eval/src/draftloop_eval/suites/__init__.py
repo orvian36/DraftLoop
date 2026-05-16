@@ -7,12 +7,12 @@ from draftloop_eval.suites.ingest_suite import IngestSuite
 from draftloop_eval.suites.retrieval_suite import RetrievalSuite
 
 __all__ = [
-    "Suite",
-    "SuiteResult",
+    "CostBudgetSuite",
+    "DraftingSuite",
+    "EndToEndSuite",
+    "ImprovementSuite",
     "IngestSuite",
     "RetrievalSuite",
-    "DraftingSuite",
-    "ImprovementSuite",
-    "EndToEndSuite",
-    "CostBudgetSuite",
+    "Suite",
+    "SuiteResult",
 ]

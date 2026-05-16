@@ -1,7 +1,6 @@
 from unittest.mock import MagicMock
 
 import pytest
-
 from draftloop_retrieval.prefixer import ContextualPrefixer
 from draftloop_retrieval.types import Chunk
 

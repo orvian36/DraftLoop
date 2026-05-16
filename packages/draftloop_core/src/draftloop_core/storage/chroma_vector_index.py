@@ -6,6 +6,7 @@ One collection per ``matter_id`` enforces per-matter isolation.
 from __future__ import annotations
 
 import asyncio
+import contextlib
 from pathlib import Path
 from typing import Any
 
@@ -84,9 +85,7 @@ class ChromaVectorIndex:
 
     async def delete_collection(self, collection: str) -> None:
         def _do():
-            try:
+            with contextlib.suppress(Exception):
                 self._client.delete_collection(collection)
-            except Exception:
-                pass
 
         await asyncio.to_thread(_do)

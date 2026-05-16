@@ -23,7 +23,8 @@ def test_writes_audit_json(tmp_path):
         duration_ms=4000,
         ingest_versions={"doc_1": "v1"},
     )
-    data = json.loads(open(path).read())
+    with open(path) as f:
+        data = json.load(f)
     assert data["matter_id"] == "M-1"
     assert data["model"] == "gemini-2.5-pro"
     assert data["retrieved_chunks"][0]["chunk_id"] == "c1"

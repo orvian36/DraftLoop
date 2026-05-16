@@ -11,7 +11,6 @@ import hashlib
 from dataclasses import dataclass
 
 import numpy as np
-
 from draftloop_core.llm import GeminiClient
 from draftloop_retrieval.embedder import GeminiEmbedder
 

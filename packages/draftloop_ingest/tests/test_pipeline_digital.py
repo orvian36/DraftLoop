@@ -1,7 +1,6 @@
+from draftloop_ingest import IngestPipeline, IngestRequest
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
-
-from draftloop_ingest import IngestPipeline, IngestRequest
 
 
 def _make_digital_pdf(path) -> None:

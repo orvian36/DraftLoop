@@ -6,9 +6,8 @@ Web smoke (Playwright) lands in Plan 4 once there's a real editor.
 from __future__ import annotations
 
 import pytest
-from fastapi.testclient import TestClient
-
 from draftloop_api.main import create_app
+from fastapi.testclient import TestClient
 
 
 @pytest.fixture
