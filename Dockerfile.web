@@ -1,0 +1,19 @@
+FROM node:20-slim AS builder
+
+WORKDIR /app
+RUN corepack enable && corepack prepare pnpm@9.12.0 --activate
+
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml turbo.json ./
+COPY packages/ui ./packages/ui
+COPY apps/web ./apps/web
+
+RUN pnpm install --frozen-lockfile
+RUN pnpm -F @draftloop/ui build
+RUN pnpm -F @draftloop/web build
+
+FROM node:20-slim AS runtime
+WORKDIR /app
+COPY --from=builder /app /app
+
+EXPOSE 3000
+CMD ["pnpm", "-F", "@draftloop/web", "start"]
