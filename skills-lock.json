@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "skills": {
+    "ai-engineer": {
+      "source": "sickn33/antigravity-awesome-skills",
+      "sourceType": "github",
+      "skillPath": "skills/ai-engineer/SKILL.md",
+      "computedHash": "52fb6090bd4270629dca0c3b5d9dfbc38aa7c928c5fc9892d07fe0359c63130b"
+    },
+    "ai-engineering-toolkit": {
+      "source": "sickn33/antigravity-awesome-skills",
+      "sourceType": "github",
+      "skillPath": "skills/ai-engineering-toolkit/SKILL.md",
+      "computedHash": "e74c31057362c8203493a2f12e08807c736a49233806b174ed934d3f63038341"
+    },
+    "api-patterns": {
+      "source": "sickn33/antigravity-awesome-skills",
+      "sourceType": "github",
+      "skillPath": "skills/api-patterns/SKILL.md",
+      "computedHash": "368aa6cfb8bcd845f3a16ffa1e2f172ac2e329c722b5705addf54a112c11ce02"
+    },
+    "api-security-best-practices": {
+      "source": "sickn33/antigravity-awesome-skills",
+      "sourceType": "github",
+      "skillPath": "skills/api-security-best-practices/SKILL.md",
+      "computedHash": "c8c4fb0ccb11d3d22b59f72115c8c5da6db3f930dfb71a7b93e3b7889f0c44fe"
+    },
+    "architecture": {
+      "source": "sickn33/antigravity-awesome-skills",
+      "sourceType": "github",
+      "skillPath": "skills/architecture/SKILL.md",
+      "computedHash": "a7a6d85d018ee5f1447ecedcb8c153a9dbcac00cf2529aee40db8a86637b9ee9"
+    },
+    "ckm:ui-styling": {
+      "source": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/ui-styling/SKILL.md",
+      "computedHash": "b5f892864e479f969820c353f44faeedc61981bf2d7a854367069a80e0a264e1"
+    },
+    "database": {
+      "source": "sickn33/antigravity-awesome-skills",
+      "sourceType": "github",
+      "skillPath": "skills/database/SKILL.md",
+      "computedHash": "af40b7d08c16de22bb9f4ba7f0add17d75ea802361365971d3d42ace55e5eaf9"
+    },
+    "database-architect": {
+      "source": "sickn33/antigravity-awesome-skills",
+      "sourceType": "github",
+      "skillPath": "skills/database-architect/SKILL.md",
+      "computedHash": "f322121c5175bf5f689f43c0721030f8a084193ef99139daba1886a561819071"
+    },
+    "impeccable": {
+      "source": "pbakaus/impeccable",
+      "sourceType": "github",
+      "skillPath": "skill/SKILL.md",
+      "computedHash": "8833ba9691dd006cea03013cffa8d5aaf0835ec8179186e0188c6fc388737147"
+    },
+    "python-fastapi-development": {
+      "source": "sickn33/antigravity-awesome-skills",
+      "sourceType": "github",
+      "skillPath": "skills/python-fastapi-development/SKILL.md",
+      "computedHash": "6a10c81e0950222a80d56b187208ace22beef7b19fefacdc025115473c13f245"
+    },
+    "senior-architect": {
+      "source": "sickn33/antigravity-awesome-skills",
+      "sourceType": "github",
+      "skillPath": "skills/senior-architect/SKILL.md",
+      "computedHash": "272dac60c7fc74bf07d672bc5d1becb0a8b08a326938c3442e9a95b4978d42c4"
+    },
+    "senior-fullstack": {
+      "source": "sickn33/antigravity-awesome-skills",
+      "sourceType": "github",
+      "skillPath": "skills/senior-fullstack/SKILL.md",
+      "computedHash": "b04afaf3648fd6d1d031c3afca2a22a6e68eac06a66098e34bf5654bd16dd7ca"
+    },
+    "ui-ux-pro-max": {
+      "source": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/ui-ux-pro-max/SKILL.md",
+      "computedHash": "6337038fe1fe6bbe1b9f252ab678ee575859190bab6f0f246f4061824eb40875"
+    }
+  }
+}
