@@ -3,6 +3,7 @@
 set -euo pipefail
 
 MMDC="${MMDC:-pnpm exec mmdc}"
+PUPPETEER_CFG="${PUPPETEER_CFG:-$(dirname "$0")/puppeteer-config.json}"
 TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT
 
@@ -30,13 +31,15 @@ shopt -s nullglob
 for mmd in "$TMP"/*.mmd; do
   i=$((i+1))
   out="${mmd%.mmd}.svg"
-  if ! $MMDC -i "$mmd" -o "$out" -q >/dev/null 2>&1; then
+  err="$(${MMDC} -i "$mmd" -o "$out" -p "$PUPPETEER_CFG" -q 2>&1)" || {
     echo "diagram failed to render: $mmd"
+    echo "----- stderr -----"
+    echo "$err"
     echo "----- source -----"
     cat "$mmd"
     echo "------------------"
     fail=1
-  fi
+  }
 done
 
 echo "checked $i diagram(s)"
