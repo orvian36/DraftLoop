@@ -6,7 +6,7 @@ from fastapi import FastAPI
 
 from draftloop_api import __version__
 from draftloop_api.lifespan import lifespan
-from draftloop_api.routes import drafts, edits, health, version
+from draftloop_api.routes import admin, drafts, edits, health, ingest, matters, version
 
 
 def create_app() -> FastAPI:
@@ -15,10 +15,16 @@ def create_app() -> FastAPI:
         version=__version__,
         lifespan=lifespan,
     )
-    app.include_router(health.router)
-    app.include_router(version.router)
-    app.include_router(drafts.router)
-    app.include_router(edits.router)
+    for r in (
+        health.router,
+        version.router,
+        matters.router,
+        ingest.router,
+        drafts.router,
+        edits.router,
+        admin.router,
+    ):
+        app.include_router(r)
     return app
 
 

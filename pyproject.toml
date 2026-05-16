@@ -28,6 +28,7 @@ draftloop-ingest = { workspace = true }
 draftloop-retrieval = { workspace = true }
 draftloop-drafting = { workspace = true }
 draftloop-edits = { workspace = true }
+draftloop-eval = { workspace = true }
 
 [tool.ruff]
 line-length = 100
