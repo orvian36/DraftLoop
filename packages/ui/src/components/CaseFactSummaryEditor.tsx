@@ -20,7 +20,8 @@ export function CaseFactSummaryEditor(props: CaseFactSummaryEditorProps): ReactE
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.matterId, props.draftId]);
 
-  if (!store.current) return <div>Loading…</div>;
+  const current = store.current;
+  if (!current) return <div>Loading…</div>;
 
   return (
     <div className="space-y-6">
@@ -33,7 +34,7 @@ export function CaseFactSummaryEditor(props: CaseFactSummaryEditorProps): ReactE
             {slot.replace("_", " ")}
           </h2>
           <ul className="space-y-2">
-            {store.current[slot].map((f) => (
+            {current[slot].map((f) => (
               <li
                 key={f.sentence_id}
                 className="rounded-md border border-slate-200 bg-white p-3"
@@ -70,7 +71,7 @@ export function CaseFactSummaryEditor(props: CaseFactSummaryEditorProps): ReactE
       <div className="sticky bottom-4 flex justify-end">
         <button
           type="button"
-          onClick={() => store.current && props.onSave(store.current)}
+          onClick={() => props.onSave(current)}
           className="rounded-md bg-slate-900 text-white px-4 py-2 text-sm hover:bg-slate-800"
         >
           Save
