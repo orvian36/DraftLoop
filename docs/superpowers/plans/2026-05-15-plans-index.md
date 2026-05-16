@@ -35,7 +35,7 @@ flowchart LR
 | 2 | `2026-05-15-02-retrieval-plan.md`             | `draftloop_retrieval` (Phase 02 spec) | Plans 0, 1 | **DONE** (merged 2026-05-16) |
 | 3 | `2026-05-15-03-drafting-plan.md`              | `draftloop_drafting` + HHEM verifier + audit trail (Phase 03 spec) | Plans 0, 2 | **DONE** (merged 2026-05-16) |
 | 4 | `2026-05-15-04-operator-ui-plan.md`           | `apps/web` editor + `packages/ui` editor components (Phase 04 spec) | Plans 0, 3 | **DONE** (merged 2026-05-16) |
-| 5 | `2026-05-15-05-improvement-loop-plan.md`      | `draftloop_edits` — capture, classifier, memory bank, critic, replay (Phase 05 spec) | Plans 3, 4 | **WRITTEN** |
+| 5 | `2026-05-15-05-improvement-loop-plan.md`      | `draftloop_edits` — capture, classifier, memory bank, critic, replay (Phase 05 spec) | Plans 3, 4 | **DONE** (merged 2026-05-16) |
 | 6 | `2026-05-15-06-evaluation-plan.md`            | `draftloop_eval` — Ragas + HHEM + golden corpus + scorecard (Phase 06 spec) | Plans 3, 5 | **WRITTEN** |
 | 7 | `2026-05-15-07-composition-demo-plan.md`      | `apps/api` full wiring, seed/demo scripts, Docker compose, README + eval report | All prior | **WRITTEN** |
 
