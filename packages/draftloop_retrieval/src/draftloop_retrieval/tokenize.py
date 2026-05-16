@@ -12,7 +12,7 @@ def tokenize_for_bm25(text: str) -> list[str]:
     preserved: list[str] = []
     placeholders: dict[str, str] = {}
 
-    def stash(m: re.Match) -> str:
+    def stash(m: re.Match[str]) -> str:
         token = m.group(0).strip()
         placeholder = f"__CIT{len(preserved)}__"
         preserved.append(token)

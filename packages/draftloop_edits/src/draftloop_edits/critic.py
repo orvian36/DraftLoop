@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 from dataclasses import dataclass
+from typing import Any
 
 from draftloop_core.llm import GeminiClient
 from draftloop_drafting.schema import CaseFactSummary
@@ -29,7 +30,7 @@ class CritiqueRunner:
     model: str
 
     def review(self, summary: CaseFactSummary, principles: list[str]) -> list[CritiqueResult]:
-        facts: list[dict] = []
+        facts: list[dict[str, Any]] = []
         for slot_facts in summary.model_dump().values():
             facts.extend(slot_facts)
         listing = "\n".join(

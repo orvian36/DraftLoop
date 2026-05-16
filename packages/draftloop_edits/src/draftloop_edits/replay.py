@@ -34,10 +34,10 @@ def _edit_distance(a: str, b: str) -> int:
 class ReplayHarness:
     drafter: Any
     memory_bank: Any
-    exemplars_frozen_at: Callable[[str], list]
+    exemplars_frozen_at: Callable[[str], list[Any]]
 
-    def run(self, *, matters: list[dict], week_ending: str) -> ReplayReport:
-        per_matter: list[dict] = []
+    def run(self, *, matters: list[dict[str, Any]], week_ending: str) -> ReplayReport:
+        per_matter: list[dict[str, Any]] = []
         distances: list[float] = []
         retentions: list[float] = []
         for m in matters:

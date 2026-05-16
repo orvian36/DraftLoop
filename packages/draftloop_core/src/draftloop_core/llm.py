@@ -73,7 +73,7 @@ class GeminiClient:
             resp = self._client.models.generate_content(
                 model=model,
                 contents=contents,
-                config=config,
+                config=config,  # type: ignore[arg-type]
             )
         except Exception as exc:
             raise LLMError(
@@ -133,7 +133,7 @@ class GeminiClient:
                 }
             resp = self._client.models.embed_content(
                 model=model,
-                contents=contents,
+                contents=contents,  # type: ignore[arg-type]
                 config=config,
             )
         except Exception as exc:
@@ -142,4 +142,4 @@ class GeminiClient:
                 code="LLM_EMBED_FAILED",
             ) from exc
 
-        return [list(e.values) for e in resp.embeddings]
+        return [list(e.values or []) for e in (resp.embeddings or [])]

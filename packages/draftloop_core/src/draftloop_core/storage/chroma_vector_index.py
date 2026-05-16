@@ -20,7 +20,7 @@ class ChromaVectorIndex:
         Path(persist_path).mkdir(parents=True, exist_ok=True)
         self._client = chromadb.PersistentClient(path=persist_path)
 
-    def _collection(self, name: str):
+    def _collection(self, name: str) -> Any:
         return self._client.get_or_create_collection(
             name=name,
             metadata={"hnsw:space": "cosine"},
@@ -31,7 +31,7 @@ class ChromaVectorIndex:
             return
         col = self._collection(collection)
 
-        def _do():
+        def _do() -> None:
             # Chroma requires non-empty metadata per item; pad if caller supplied {}.
             metadatas = [(it.metadata or {"_": "1"}) for it in items]
             col.upsert(
@@ -52,7 +52,7 @@ class ChromaVectorIndex:
     ) -> list[VectorHit]:
         col = self._collection(collection)
 
-        def _do():
+        def _do() -> Any:
             kwargs: dict[str, Any] = {
                 "query_embeddings": [vector],
                 "n_results": top_k,
@@ -84,7 +84,7 @@ class ChromaVectorIndex:
         return out
 
     async def delete_collection(self, collection: str) -> None:
-        def _do():
+        def _do() -> None:
             with contextlib.suppress(Exception):
                 self._client.delete_collection(collection)
 

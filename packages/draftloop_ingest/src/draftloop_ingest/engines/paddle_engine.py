@@ -25,7 +25,7 @@ class PaddleEngine:
     def __init__(self) -> None:
         # Lazy import: importing paddleocr triggers paddlepaddle to load, which is
         # expensive (~600MB) and may fail on some platforms.
-        from paddleocr import PaddleOCR  # type: ignore[import-not-found]
+        from paddleocr import PaddleOCR
 
         self._ocr = PaddleOCR(
             use_angle_cls=True,

@@ -6,6 +6,7 @@ import pickle
 import re
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Any
 
 from rank_bm25 import BM25Okapi
 
@@ -18,7 +19,7 @@ def _tokenize(text: str) -> list[str]:
     preserved: list[str] = []
     placeholders: dict[str, str] = {}
 
-    def stash(m: re.Match) -> str:
+    def stash(m: re.Match[str]) -> str:
         token = m.group(0).strip()
         placeholder = f"__CIT{len(preserved)}__"
         preserved.append(token)
@@ -70,9 +71,10 @@ class RankBm25LexicalIndex:
         ranked = sorted(zip(docs, scores, strict=True), key=lambda x: x[1], reverse=True)[:top_k]
         return [LexicalHit(id=d["id"], score=float(s), text=d["text"]) for d, s in ranked]
 
-    def _load(self, collection: str) -> list[dict]:
+    def _load(self, collection: str) -> list[dict[str, Any]]:
         p = self._path(collection)
         if not p.exists():
             return []
         with p.open("rb") as f:
-            return pickle.load(f)
+            loaded: list[dict[str, Any]] = pickle.load(f)
+            return loaded

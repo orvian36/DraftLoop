@@ -10,13 +10,15 @@ from pydantic import BaseModel, ConfigDict, Field
 from draftloop_drafting.schema import CaseFactSummary
 
 
+def _empty_exemplars() -> dict[str, list[dict[str, Any]]]:
+    return {"fact": [], "style": []}
+
+
 class DraftRequest(BaseModel):
     matter_id: str
     draft_id: str
     retrieval_hits: dict[str, list[RetrievalHit]]
-    exemplars: dict[str, list[dict[str, Any]]] = Field(
-        default_factory=lambda: {"fact": [], "style": []}
-    )
+    exemplars: dict[str, list[dict[str, Any]]] = Field(default_factory=_empty_exemplars)
     principles: list[str] = Field(default_factory=list)
     drafter_mode: Literal["single_call", "two_call"] = "single_call"
     drafter_model: str = "gemini-2.5-pro"

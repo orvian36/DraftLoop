@@ -12,6 +12,7 @@ from __future__ import annotations
 import hashlib
 import re
 from collections.abc import Iterator
+from typing import Any
 
 import tiktoken
 
@@ -47,9 +48,9 @@ class StructuralSplitter:
                 ingest_version=ingest_version,
             )
 
-    def _split_sections(self, md: str) -> list[dict]:
+    def _split_sections(self, md: str) -> list[dict[str, Any]]:
         headings = [(m.start(), m.group(2).strip()) for m in _HEADING_RE.finditer(md)]
-        sections: list[dict] = []
+        sections: list[dict[str, Any]] = []
         if not headings:
             sections.append({"start": 0, "label": None, "text": md})
             return sections

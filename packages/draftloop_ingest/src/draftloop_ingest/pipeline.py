@@ -7,7 +7,9 @@ IngestResult.
 from __future__ import annotations
 
 import time
+from collections.abc import Callable
 from pathlib import Path
+from typing import Any
 
 from draftloop_core.obs import get_logger, traced
 
@@ -17,6 +19,7 @@ from draftloop_ingest.markdown_assembler import assemble_markdown
 from draftloop_ingest.probe import probe_pdf
 from draftloop_ingest.raster import rasterize_page
 from draftloop_ingest.types import (
+    EngineName,
     IngestRequest,
     IngestResult,
     NeedsReviewSpan,
@@ -33,16 +36,16 @@ class IngestPipeline:
         self,
         *,
         digital_extractor: Pdf4llmExtractor | None = None,
-        paddle_engine_factory=None,
-        tesseract_engine_factory=None,
+        paddle_engine_factory: Callable[[], Any] | None = None,
+        tesseract_engine_factory: Callable[[], Any] | None = None,
     ) -> None:
         self._digital = digital_extractor or Pdf4llmExtractor()
         self._paddle_factory = paddle_engine_factory
         self._tesseract_factory = tesseract_engine_factory
-        self._paddle = None
-        self._tesseract = None
+        self._paddle: Any = None
+        self._tesseract: Any = None
 
-    def _get_paddle(self):
+    def _get_paddle(self) -> Any:
         if self._paddle is None:
             if self._paddle_factory is not None:
                 self._paddle = self._paddle_factory()
@@ -56,7 +59,7 @@ class IngestPipeline:
                     self._paddle = False
         return self._paddle or None
 
-    def _get_tesseract(self):
+    def _get_tesseract(self) -> Any:
         if self._tesseract is None:
             if self._tesseract_factory is not None:
                 self._tesseract = self._tesseract_factory()
@@ -95,7 +98,7 @@ class IngestPipeline:
         scanned_indices = [p.page_index for p in probes if not p.has_text_layer]
 
         extracted: dict[int, ExtractedPage] = {}
-        engines_used: dict[int, list[str]] = {}
+        engines_used: dict[int, list[EngineName]] = {}
 
         if digital_indices:
             for page in self._digital.extract(req.source_path, digital_indices):
@@ -111,7 +114,7 @@ class IngestPipeline:
 
             probe = probes[idx]
             page_obj: ExtractedPage | None = None
-            engines_for_page: list[str] = []
+            engines_for_page: list[EngineName] = []
 
             paddle = self._get_paddle() if req.enable_paddle else None
             if paddle is not None:

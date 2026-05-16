@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 
 from draftloop_retrieval.types import RetrievalHit
 
@@ -19,8 +20,8 @@ class PromptAssembler:
         *,
         matter_id: str,
         retrieval_hits: dict[str, list[RetrievalHit]],
-        fact_exemplars: list[dict],
-        style_exemplars: list[dict],
+        fact_exemplars: list[dict[str, Any]],
+        style_exemplars: list[dict[str, Any]],
         principles: list[str],
     ) -> tuple[str, str]:
         tagged = self._render_chunks(retrieval_hits)
@@ -52,7 +53,7 @@ class PromptAssembler:
         return "\n\n".join(parts) or "(no chunks)"
 
     @staticmethod
-    def _render_exemplars(ex: list[dict]) -> str:
+    def _render_exemplars(ex: list[dict[str, Any]]) -> str:
         if not ex:
             return "(none)"
         return "\n".join(

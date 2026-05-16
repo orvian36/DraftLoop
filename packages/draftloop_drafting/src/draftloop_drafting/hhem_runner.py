@@ -52,6 +52,7 @@ class HhemRunner:
         try:
             import torch
 
+            assert HhemRunner._model is not None
             with torch.no_grad():
                 scores = HhemRunner._model.predict([(premise, hypothesis)])
             return float(scores[0])

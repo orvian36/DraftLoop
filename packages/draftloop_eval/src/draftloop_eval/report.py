@@ -20,14 +20,14 @@ MD_TPL = """# DraftLoop Eval Report — {date}
 """
 
 
-def write_json(path: Path, suites: dict[str, Any], scorecard_summary: dict) -> None:
+def write_json(path: Path, suites: dict[str, Any], scorecard_summary: dict[str, Any]) -> None:
     path.write_text(
         json.dumps({"suites": suites, "scorecard": scorecard_summary}, indent=2, default=str),
         encoding="utf-8",
     )
 
 
-def write_md(path: Path, suites: dict[str, Any], scorecard_rows: list[dict]) -> None:
+def write_md(path: Path, suites: dict[str, Any], scorecard_rows: list[dict[str, Any]]) -> None:
     rows = "\n".join(
         f"| {r['title']} | {r['points']} | {r['primary_metric']} | {r['primary_value']} | {r['threshold']} | {r['status'].upper()} |"
         for r in scorecard_rows
@@ -42,7 +42,7 @@ def write_md(path: Path, suites: dict[str, Any], scorecard_rows: list[dict]) -> 
     )
 
 
-def write_html(path: Path, suites: dict[str, Any], scorecard_rows: list[dict]) -> None:
+def write_html(path: Path, suites: dict[str, Any], scorecard_rows: list[dict[str, Any]]) -> None:
     rows_html = "".join(
         f"<tr><td>{r['title']}</td><td>{r['points']}</td><td>{r['primary_metric']}</td>"
         f"<td>{r['primary_value']}</td><td>{r['threshold']}</td>"

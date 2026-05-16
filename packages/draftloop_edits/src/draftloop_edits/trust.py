@@ -5,6 +5,10 @@ from __future__ import annotations
 from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from draftloop_edits.types import TrustScore
 
 
 @dataclass(frozen=True)
@@ -43,7 +47,7 @@ class TrustEngine:
         self.reversions_caused[event.reverter] += 1
         self.weights[event.original_op] = max(0.0, self.weights[event.original_op] * 0.3)
 
-    def score(self, operator_id: str):
+    def score(self, operator_id: str) -> TrustScore:
         from draftloop_edits.types import TrustScore
 
         return TrustScore(

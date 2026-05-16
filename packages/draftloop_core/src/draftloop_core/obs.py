@@ -11,7 +11,7 @@ import functools
 import logging
 import sys
 from collections.abc import Callable
-from typing import TypeVar
+from typing import TypeVar, cast
 
 import structlog
 from opentelemetry import trace
@@ -57,7 +57,7 @@ def configure_logging(level: str = "INFO") -> None:
 
 
 def get_logger(name: str) -> structlog.stdlib.BoundLogger:
-    return structlog.get_logger(name)
+    return cast(structlog.stdlib.BoundLogger, structlog.get_logger(name))
 
 
 def traced(span_name: str) -> Callable[[Callable[..., T]], Callable[..., T]]:

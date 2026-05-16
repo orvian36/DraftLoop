@@ -95,7 +95,7 @@ class EditClassifier:
             data = json.loads(resp.text)
         except Exception:
             return [EditClass.TONE], {"tone": 0.5}
-        valid = EditClass._value2member_map_  # type: ignore[attr-defined]
+        valid = EditClass._value2member_map_
         labels = [EditClass(label) for label in data.get("labels", []) if label in valid]
         if not labels:
             labels = [EditClass.TONE]
