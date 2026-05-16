@@ -2,7 +2,7 @@
 
 > Ingest messy legal documents → generate **grounded** Case Fact Summaries → measurably improve from operator edits.
 
-DraftLoop is the take-home submission for Pearson Specter Litt's AI Engineer Assessment (document understanding, grounded drafting, improvement-from-edits). Every fact in the generated draft carries a citation that survives a substring check against the source; failed citations are auto-rewritten to `UNSUPPORTED` rather than fabricated.
+DraftLoop is an AI-engineering project for document understanding, grounded drafting, and improvement-from-edits. Every fact in the generated draft carries a citation that survives a substring check against the source; failed citations are auto-rewritten to `UNSUPPORTED` rather than fabricated.
 
 ---
 
@@ -176,4 +176,4 @@ Plug into the same ingest pipeline:
 
 ## License
 
-Project authored for the Pearson Specter Litt take-home assessment. License TBD before any external use.
+License TBD before any external use.

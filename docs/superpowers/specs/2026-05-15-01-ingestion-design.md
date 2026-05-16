@@ -251,11 +251,11 @@ key* — never regenerated automatically.
 | Engine emits non-UTF-8 bytes | Normalize via `errors="replace"`; flag the line `needs_review=True` |
 | Document is encrypted | Detect via pypdfium2; emit `IngestResult` with `failed=True` and `reason="encrypted"` |
 
-## 12. Public-domain corpora (for post-assessment expansion)
+## 12. Public-domain corpora (for post-MVP expansion)
 
 Curated in `docs/superpowers/specs/00-overview-design.md` §9. The same
 `IngestPipeline` ingests CourtListener / SEC EDGAR / Justia PDFs unchanged.
-`scripts/import_external_pdf.py` wires that up post-assessment.
+`scripts/import_external_pdf.py` wires that up in a future iteration.
 
 ## 13. Open decisions deferred to implementation
 

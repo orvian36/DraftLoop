@@ -5,7 +5,6 @@
 | Status         | Approved (brainstorming)                                           |
 | Owner          | DraftLoop team                                                     |
 | Date           | 2026-05-15                                                         |
-| Source         | `document/AI Engineer - Assessment.pdf`                            |
 | Rubric weight  | All 100 points (composition layer)                                 |
 
 > Each design doc in this directory describes one phase of DraftLoop. Read this
@@ -14,7 +13,7 @@
 
 ## 1. Goal
 
-DraftLoop is an internal workflow for Pearson Specter Litt that:
+DraftLoop is an internal workflow for a litigation team that:
 
 1. Ingests messy legal-style documents (scanned, low-resolution, handwritten,
    illegible, inconsistently formatted).
@@ -99,7 +98,7 @@ draftloop/
 | # | Decision | Rationale |
 |---|----------|-----------|
 | 1 | Modular package-per-phase (Approach C) | Reusable across other projects; CLAUDE.md enforces boundaries via lint |
-| 2 | Single FastAPI process + BackgroundTasks | No Redis/Celery; reviewer experience trumps throughput at take-home scale |
+| 2 | Single FastAPI process + BackgroundTasks | No Redis/Celery; reviewer experience trumps throughput at v0.1 scale |
 | 3 | Storage behind three interfaces (`DocumentStore`, `VectorIndex`, `BlobStore`) | Local SQLite/Chroma by default; Postgres/Qdrant/S3 are config swaps |
 | 4 | Gemini-only LLM dependency | User-chosen provider; all calls funneled through `draftloop_core.llm` |
 | 5 | Span-citation protocol (chunk-ID tags + Pydantic schema + post-validation) | Gemini lacks native user-doc citations; structural schema + verifier substitutes |
@@ -188,7 +187,7 @@ Discipline: any architectural change updates its diagrams in the same PR.
 | Needs-review span | Any ingested span with `confidence < 0.80`; never sole citation |
 | UNSUPPORTED | Sentinel `Fact.text` used when evidence is missing/contradictory |
 
-## 9. Public-domain sample corpora (for post-assessment expansion)
+## 9. Public-domain sample corpora (for post-MVP expansion)
 
 The synthetic corpus is the default eval set (deterministic ground truth). For
 later expansion against real-world inputs, pull from any of:
@@ -203,7 +202,7 @@ later expansion against real-world inputs, pull from any of:
 - [Government Publishing Office](https://www.govinfo.gov/)
 
 `scripts/build_synthetic_corpus.py` generates the canonical 12-doc corpus.
-`scripts/import_external_pdf.py` (post-assessment) ingests external PDFs into a
+`scripts/import_external_pdf.py` (future iteration) ingests external PDFs into a
 new matter while preserving the eval pipeline against the synthetic golden set.
 
 ## 10. Out of scope (this iteration)
