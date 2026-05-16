@@ -1,3 +1,3 @@
-from draftloop_api.routes import health, version
+from draftloop_api.routes import drafts, edits, health, version
 
-__all__ = ["health", "version"]
+__all__ = ["health", "version", "drafts", "edits"]
