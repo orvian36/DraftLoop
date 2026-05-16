@@ -1,0 +1,22 @@
+[project]
+name = "draftloop-edits"
+version = "0.1.0"
+description = "DraftLoop improvement-from-edits loop"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "draftloop-core",
+    "draftloop-retrieval",
+    "draftloop-drafting",
+    "numpy>=1.26.0",
+]
+
+# Optional: hdbscan (heavy build). Install separately if you need RuleCatalog clustering:
+# pip install hdbscan
+# If unavailable, RuleCatalog.cluster() returns [] gracefully.
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/draftloop_edits"]
