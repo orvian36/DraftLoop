@@ -20,13 +20,14 @@ dev = [
 ]
 
 [tool.uv.workspace]
-members = ["packages/draftloop_core", "packages/draftloop_ingest", "packages/draftloop_retrieval", "packages/draftloop_drafting", "packages/draftloop_edits", "apps/api"]
+members = ["packages/draftloop_core", "packages/draftloop_ingest", "packages/draftloop_retrieval", "packages/draftloop_drafting", "packages/draftloop_edits", "packages/draftloop_eval", "apps/api"]
 
 [tool.uv.sources]
 draftloop-core = { workspace = true }
 draftloop-ingest = { workspace = true }
 draftloop-retrieval = { workspace = true }
 draftloop-drafting = { workspace = true }
+draftloop-edits = { workspace = true }
 
 [tool.ruff]
 line-length = 100

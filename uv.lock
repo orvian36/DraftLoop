@@ -8,6 +8,7 @@ members = [
     "draftloop-core",
     "draftloop-drafting",
     "draftloop-edits",
+    "draftloop-eval",
     "draftloop-ingest",
     "draftloop-retrieval",
     "draftloop-workspace",
@@ -407,6 +408,27 @@ requires-dist = [
     { name = "draftloop-drafting", editable = "packages/draftloop_drafting" },
     { name = "draftloop-retrieval", editable = "packages/draftloop_retrieval" },
     { name = "numpy", specifier = ">=1.26.0" },
+]
+
+[[package]]
+name = "draftloop-eval"
+version = "0.1.0"
+source = { editable = "packages/draftloop_eval" }
+dependencies = [
+    { name = "draftloop-core" },
+    { name = "draftloop-drafting" },
+    { name = "draftloop-edits" },
+    { name = "draftloop-ingest" },
+    { name = "draftloop-retrieval" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "draftloop-core", editable = "packages/draftloop_core" },
+    { name = "draftloop-drafting", editable = "packages/draftloop_drafting" },
+    { name = "draftloop-edits", editable = "packages/draftloop_edits" },
+    { name = "draftloop-ingest", editable = "packages/draftloop_ingest" },
+    { name = "draftloop-retrieval", editable = "packages/draftloop_retrieval" },
 ]
 
 [[package]]
