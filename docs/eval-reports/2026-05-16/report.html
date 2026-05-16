@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>DraftLoop Eval Report</title>
+<style>body{font-family:system-ui;padding:24px;max-width:1100px;margin:auto;}table{border-collapse:collapse;width:100%;margin-bottom:24px;}td,th{border:1px solid #cbd5e1;padding:8px;text-align:left;}pre{background:#f8fafc;padding:12px;border-radius:6px;overflow-x:auto;}</style></head><body>
+<h1>DraftLoop Eval Report</h1>
+<h2>Rubric Scorecard</h2>
+<table><thead><tr><th>Section</th><th>Pts</th><th>Metric</th><th>Value</th><th>Threshold</th><th>Status</th></tr></thead>
+<tbody><tr><td>Document Processing</td><td>25</td><td>extraction_f1</td><td>1.0</td><td>0.9</td><td style='background:#dcfce7'>PASS</td></tr><tr><td>Retrieval & Grounding</td><td>25</td><td>context_precision_at_10</td><td>1.0</td><td>0.75</td><td style='background:#dcfce7'>PASS</td></tr><tr><td>Draft Quality</td><td>10</td><td>faithfulness</td><td>0.0</td><td>0.85</td><td style='background:#fee2e2'>FAIL</td></tr><tr><td>Improvement from Edits</td><td>25</td><td>edit_distance_p50_trend_pct</td><td>-16.0</td><td>-15.0</td><td style='background:#dcfce7'>PASS</td></tr><tr><td>Code Quality & Design</td><td>10</td><td>coverage</td><td>0.85</td><td>0.8</td><td style='background:#dcfce7'>PASS</td></tr><tr><td>Documentation & Clarity</td><td>5</td><td>docs_lint_passed</td><td>True</td><td>True</td><td style='background:#dcfce7'>PASS</td></tr></tbody></table>
+<h2>Suites</h2><h3>ingest</h3><pre>{
+  "extraction_f1": 1.0,
+  "needs_review_recall": 1.0,
+  "docs_scored": 4
+}</pre><h3>retrieval</h3><pre>{
+  "context_precision_at_10": 1.0,
+  "context_recall_at_10": 1.0,
+  "hit_rate_at_5": 1.0,
+  "qa_total": 10
+}</pre><h3>drafting</h3><pre>{
+  "faithfulness": 0.0,
+  "answer_relevance": 0.0,
+  "hhem_mean": 0.0,
+  "abstention_precision": 1.0,
+  "abstention_recall": 0.0,
+  "positives": 8,
+  "negatives": 2
+}</pre><h3>improvement</h3><pre>{
+  "edit_distance_p50_trend_pct": -16.0,
+  "citation_retention_rate": 0.9,
+  "anti_poison_precision": 0.96,
+  "weeks": 1
+}</pre><h3>end_to_end</h3><pre>{
+  "time_to_first_draft_min": 8.0
+}</pre><h3>cost_budget</h3><pre>{
+  "recorded_cost_usd": 0.0,
+  "budget_usd": 2.0
+}</pre>
+</body></html>

@@ -18,8 +18,9 @@ dist/
 .turbo/
 *.tsbuildinfo
 
-# Data (gitignored runtime)
-data/
+# Data (gitignored runtime, except committed golden fixtures)
+data/*
+!data/golden/
 
 # Env
 .env
