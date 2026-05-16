@@ -1,0 +1,89 @@
+{
+  "suites": {
+    "ingest": {
+      "extraction_f1": 1.0,
+      "needs_review_recall": 1.0,
+      "docs_scored": 4
+    },
+    "retrieval": {
+      "context_precision_at_10": 1.0,
+      "context_recall_at_10": 1.0,
+      "hit_rate_at_5": 1.0,
+      "qa_total": 10
+    },
+    "drafting": {
+      "faithfulness": 0.0,
+      "answer_relevance": 0.0,
+      "hhem_mean": 0.0,
+      "abstention_precision": 1.0,
+      "abstention_recall": 0.0,
+      "positives": 8,
+      "negatives": 2
+    },
+    "improvement": {
+      "edit_distance_p50_trend_pct": -16.0,
+      "citation_retention_rate": 0.9,
+      "anti_poison_precision": 0.96,
+      "weeks": 1
+    },
+    "end_to_end": {
+      "time_to_first_draft_min": 8.0
+    },
+    "cost_budget": {
+      "recorded_cost_usd": 0.0,
+      "budget_usd": 2.0
+    }
+  },
+  "scorecard": {
+    "rows": [
+      {
+        "title": "Document Processing",
+        "points": 25,
+        "primary_metric": "extraction_f1",
+        "primary_value": 1.0,
+        "threshold": 0.9,
+        "status": "pass"
+      },
+      {
+        "title": "Retrieval & Grounding",
+        "points": 25,
+        "primary_metric": "context_precision_at_10",
+        "primary_value": 1.0,
+        "threshold": 0.75,
+        "status": "pass"
+      },
+      {
+        "title": "Draft Quality",
+        "points": 10,
+        "primary_metric": "faithfulness",
+        "primary_value": 0.0,
+        "threshold": 0.85,
+        "status": "fail"
+      },
+      {
+        "title": "Improvement from Edits",
+        "points": 25,
+        "primary_metric": "edit_distance_p50_trend_pct",
+        "primary_value": -16.0,
+        "threshold": -15.0,
+        "status": "pass"
+      },
+      {
+        "title": "Code Quality & Design",
+        "points": 10,
+        "primary_metric": "coverage",
+        "primary_value": 0.85,
+        "threshold": 0.8,
+        "status": "pass"
+      },
+      {
+        "title": "Documentation & Clarity",
+        "points": 5,
+        "primary_metric": "docs_lint_passed",
+        "primary_value": true,
+        "threshold": true,
+        "status": "pass"
+      }
+    ]
+  }
+}
